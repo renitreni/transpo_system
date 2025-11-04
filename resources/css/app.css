@@ -1,0 +1,45 @@
+
+@import './../vendor/fontawesome-free/css/all.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: 'Inter', sans-serif;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+  }
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #faf9f9;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #225bfe;
+  }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #0c49ee;
+}
+
+.tab-toggle:checked + .tab{
+    background-color: #4f78e9 !important;
+    color: #fff !important;
+}
+
+[x-cloak]{
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .dark\:text-slate-100 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(0 0 0) !important;
+    }
+}
