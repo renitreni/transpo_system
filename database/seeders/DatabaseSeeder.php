@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         // Admins Account
         \App\Models\User::factory()->create([
             'name' => 'Ibraheem',
-            'email' => 'ibraheem@sultanalfouzanco.online',
+            'email' => 'ibraheem@alesnaad.online',
             'role' => 'Admin',
             'password' => Hash::make('Ibraheem2024'),
         ]);
@@ -26,28 +26,28 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Koshnor',
             'role' => 'Admin',
-            'email' => 'koshnor@sultanalfouzanco.online',
+            'email' => 'koshnor@alesnaad.online',
             'password' => Hash::make('Koshnor2024'),
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'Fouzan',
             'role' => 'Admin',
-            'email' => 'fouzan@sultanalfouzanco.online',
+            'email' => 'fouzan@alesnaad.online',
             'password' => Hash::make('Fouzan2024'),
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'role' => 'Admin',
-            'email' => 'Admin@sultanalfouzanco.online',
+            'email' => 'Admin@alesnaad.online',
             'password' => Hash::make('Admin2024'),
         ]);
 
         // Employees Account
         \App\Models\User::factory()->create([
             'name' => 'Mechanic',
-            'email' => 'mechanic@sultanalfouzanco.online',
+            'email' => 'mechanic@alesnaad.online',
             'role' => 'Mechanic',
             'password' => Hash::make('Mechanic2024'),
         ]);

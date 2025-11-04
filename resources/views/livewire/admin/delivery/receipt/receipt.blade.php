@@ -87,11 +87,11 @@
             color: white;
         }
 
-        .pending{
+        .pending {
             color: rgb(238, 25, 25);
         }
 
-        .paid{
+        .paid {
             color: rgb(87, 202, 87);
         }
     </style>
@@ -99,25 +99,27 @@
 
 <body>
     <div class="w-full">
-        <span  class="text-xs font-semibold" style="width: 100%;opacity:.7;">ORDER ID: {{ $customer->OrderTrackNumber }}</span>
-        <span class="font-semibold" style="margin-left: 640px;opacity:.7;font-size:12px;">{{ $customer->MethodPayment }}</span>
-        </div>
-        <h3 style="margin-block: 1rem;" class="text-2xl">CLIENT RECEIPT</h3>
+        <span class="text-xs font-semibold" style="width: 100%;opacity:.7;">ORDER ID:
+            {{ $customer->OrderTrackNumber }}</span>
+        <span class="font-semibold"
+            style="margin-left: 640px;opacity:.7;font-size:12px;">{{ $customer->MethodPayment }}</span>
+    </div>
+    <h3 style="margin-block: 1rem;" class="text-2xl">CLIENT RECEIPT</h3>
 
-        <div style="margin-bottom: 3rem;">
-            <div class="w-full overflow-x-auto">
-                <div style="display: flex;justify-content:space-between;align-items:center;width:640px;">
-                    <p style="font-weight:600;font-size:1.4rem;">Purchased Items</p>
-                </div>
-                <table id="customers">
-                    <tr>
-                        <th>Quantity</th>
-                        <th>Product</th>
-                        <th>Color</th>
-                        <th>Chassis Number</th>
-                        <th>Warranty Expiration</th>
-                    </tr>
-                    @foreach ($orders as $order )
+    <div style="margin-bottom: 3rem;">
+        <div class="w-full overflow-x-auto">
+            <div style="display: flex;justify-content:space-between;align-items:center;width:640px;">
+                <p style="font-weight:600;font-size:1.4rem;">Purchased Items</p>
+            </div>
+            <table id="customers">
+                <tr>
+                    <th>Quantity</th>
+                    <th>Product</th>
+                    <th>Color</th>
+                    <th>Chassis Number</th>
+                    <th>Warranty Expiration</th>
+                </tr>
+                @foreach ($orders as $order)
                     <tr wire:key='{{ $order->id }}'>
                         <td>{{ $order->Quantity }}</td>
                         <td>{{ $order->Product }}</td>
@@ -125,12 +127,12 @@
                         <td>{{ $order->ChassisNumber }}</td>
                         <td>{{ $order->WarrantyExpiration }}</td>
                     </tr>
-                    @endforeach
-                </table>
-            </div>
+                @endforeach
+            </table>
         </div>
+    </div>
 
-        {{-- <div style="display: flex;justify-content:end;">
+    {{-- <div style="display: flex;justify-content:end;">
             <div style="display:flex;justify-content:end;flex-direction:column;gap:6px;">
                 <div style="display: flex; align-items:center; justify-content:space-between;">
                     <span style="font-size: 12px;font-weight:600;">Sub Total:</span>
@@ -155,23 +157,23 @@
             </div>
         </div> --}}
 
-        <div style="margin-block: 3rem;">
-            <p class="text-sm font-semibold">Client Information</p>
-            <hr>
-            <div style="opacity: .8; margin-top:1rem;" class="text-xs font-semibold">
-                <p>Client: {{ $customer->FullName ?? "" }}</p>
-                <p>COMPANY: {{ $customer->CompanyName ?? "" }}</p>
-                <p>CONTACT: {{ $customer->PhoneNumber ?? "" }}</p>
-                <p>LOCATION: {{ $customer->OfficeAddress ?? "" }}, {{ $customer->OtherLocation ?? "" }}</p>
-                <p>PURCHASED DATE: {{ $customer->OrderDate }}</p>
-                <br>
-            </div>
-        </div>
-
+    <div style="margin-block: 3rem;">
+        <p class="text-sm font-semibold">Client Information</p>
         <hr>
-        <p style="font-size:12px; opacity:.7;font-weight:600;">Sultanalfouzanco </p>
+        <div style="opacity: .8; margin-top:1rem;" class="text-xs font-semibold">
+            <p>Client: {{ $customer->FullName ?? '' }}</p>
+            <p>COMPANY: {{ $customer->CompanyName ?? '' }}</p>
+            <p>CONTACT: {{ $customer->PhoneNumber ?? '' }}</p>
+            <p>LOCATION: {{ $customer->OfficeAddress ?? '' }}, {{ $customer->OtherLocation ?? '' }}</p>
+            <p>PURCHASED DATE: {{ $customer->OrderDate }}</p>
+            <br>
+        </div>
+    </div>
 
-        {{-- <div class=".page-break ">Thank you for purchasing...</div> --}}
+    <hr>
+    <p style="font-size:12px; opacity:.7;font-weight:600;">alesnaad </p>
+
+    {{-- <div class=".page-break ">Thank you for purchasing...</div> --}}
     </div>
 </body>
 

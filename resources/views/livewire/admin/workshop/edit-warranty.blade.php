@@ -54,8 +54,8 @@
                             <option selected value="">Select</option>
                             <option @if ($form->Brand == 'CAMAC') selected @endif value="CAMAC">CAMAC</option>
                             <option @if ($form->Brand == 'ENSIGN') selected @endif value="ENSIGN">ENSIGN</option>
-                            <option @if ($form->Brand == 'SULTANALFOUZANCO') selected @endif value="SULTANALFOUZANCO">
-                                SULTANALFOUZANCO</option>
+                            <option @if ($form->Brand == 'alesnaad') selected @endif value="alesnaad">
+                                alesnaad</option>
                         </select>
                     </div>
                     <div class="{{ $inputContainerStyle }} col-span-2">
@@ -105,7 +105,7 @@
                         <option selected value="">Select</option>
                         <option @if ($form->ApprovedBy == 'ENSIGN') selected @endif value="ENSIGN">ENSIGN</option>
                         <option @if ($form->ApprovedBy == 'CAMAC') selected @endif value="CAMAC">CAMAC</option>
-                        {{-- <option @if ($form->ApprovedBy == 'SULTANALFOUZANCO') selected @endif value="SULTANALFOUZANCO">SULTANALFOUZANCO</option> --}}
+                        {{-- <option @if ($form->ApprovedBy == 'alesnaad') selected @endif value="alesnaad">alesnaad</option> --}}
                     </select>
                 </div>
 

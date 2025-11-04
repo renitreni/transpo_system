@@ -1,8 +1,8 @@
 <div>
-    <div >
+    <div>
         <div>
             <h1 class="text-2xl font-bold">{{ trans('dashboard') }}</h1>
-            <small>Sultanalfouzanco</small>
+            <small>alesnaad</small>
         </div>
 
         <div class="mt-[40px] w-full flex ">

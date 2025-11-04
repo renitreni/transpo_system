@@ -64,7 +64,7 @@
                     @error('company_name') <small class="text-rose-600">{{ $message }}</small> @enderror
 
                     <datalist id="company_list">
-                        <option value="Sultan Al Fouzan"></option>
+                        <option value="alesnaad"></option>
                     </datalist>
                 </div>
 

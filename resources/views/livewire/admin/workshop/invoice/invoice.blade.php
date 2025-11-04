@@ -87,11 +87,11 @@
             color: white;
         }
 
-        .pending{
+        .pending {
             color: rgb(238, 25, 25);
         }
 
-        .paid{
+        .paid {
             color: rgb(87, 202, 87);
         }
     </style>
@@ -115,13 +115,13 @@
                         <th>Unit Amount (SAR)</th>
                         <th>Total Amount (SAR)</th>
                     </tr>
-                    @foreach ($services as $service )
-                    <tr wire:key='{{ $service->id }}'>
-                        <td>{{ $service->ServiceFee }}</td>
-                        <td>{{ $service->WorkshopFee }}</td>
-                        <td>{{ $service->UnitAmount }}</td>
-                        <td>{{ $service->TotalAmount }}</td>
-                    </tr>
+                    @foreach ($services as $service)
+                        <tr wire:key='{{ $service->id }}'>
+                            <td>{{ $service->ServiceFee }}</td>
+                            <td>{{ $service->WorkshopFee }}</td>
+                            <td>{{ $service->UnitAmount }}</td>
+                            <td>{{ $service->TotalAmount }}</td>
+                        </tr>
                     @endforeach
                 </table>
             </div>
@@ -131,16 +131,16 @@
             <p class="text-sm font-semibold">Invoice Information</p>
             <hr>
             <div style="opacity: .8; margin-top:1rem;" class="text-xs font-semibold">
-                <p>CUSTOMER: {{ $customer->Customer_Name ?? "" }}</p>
-                <p>SUBTOTAL: SAR {{ $customer->SubTotal ?? "" }}</p>
-                <p>BALANCE AMOUNT: SAR {{ $customer->Balance_Amount ?? "" }}</p>
-                <p>DATE:{{ date('Y-m-d',strtotime($customer->created_at)) }}</p>
+                <p>CUSTOMER: {{ $customer->Customer_Name ?? '' }}</p>
+                <p>SUBTOTAL: SAR {{ $customer->SubTotal ?? '' }}</p>
+                <p>BALANCE AMOUNT: SAR {{ $customer->Balance_Amount ?? '' }}</p>
+                <p>DATE:{{ date('Y-m-d', strtotime($customer->created_at)) }}</p>
                 <br>
             </div>
         </div>
 
         <hr>
-        <p style="font-size:12px; opacity:.7;font-weight:600;">Sultanalfouzanco </p>
+        <p style="font-size:12px; opacity:.7;font-weight:600;">alesnaad </p>
 
         {{-- <div class=".page-break ">Thank you for purchasing...</div> --}}
     </div>

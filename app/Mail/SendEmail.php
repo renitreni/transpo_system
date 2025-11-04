@@ -25,7 +25,7 @@ class SendEmail extends Mailable
 
     public function build()
     {
-        return $this->from('info@sultanalfouzanco.online', 'Sultan Al Fouzan')
+        return $this->from('info@alesnaad.online', 'alesnaad')
             ->to($this->receiver)
             ->subject($this->subject)
             ->view('livewire.admin.renting.mail.mail')

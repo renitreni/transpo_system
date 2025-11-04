@@ -21,7 +21,7 @@ class FleetExport implements FromView, ShouldAutoSize, WithDrawings
     {
         $drawing = new Drawing;
         $drawing->setName('Logo');
-        $drawing->setDescription('Sultanalfouzanco Logo');
+        $drawing->setDescription('alesnaad Logo');
         $drawing->setPath(public_path('long_logo.png'));
         $drawing->setHeight(90);
         $drawing->setWidth(630);
