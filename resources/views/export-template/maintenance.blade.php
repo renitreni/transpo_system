@@ -9,8 +9,7 @@
 <table>
     <tbody>
         <tr>
-            <td colspan="13">
-                <img src="{{ public_path('long_logo.png') }}" style="margin-left: 120px">
+            <td colspan="13"><img width="377" height="76" src="https://alesnaad.com/wp-content/uploads/2023/11/14-377x76.jpg" class="custom-logo" alt="شركة الاسناد الماسي" decoding="async" srcset="https://alesnaad.com/wp-content/uploads/2023/11/14-377x76.jpg 377w, https://alesnaad.com/wp-content/uploads/2023/11/14-300x61.jpg 300w, https://alesnaad.com/wp-content/uploads/2023/11/14-768x155.jpg 768w, https://alesnaad.com/wp-content/uploads/2023/11/14.jpg 976w" sizes="(max-width: 377px) 100vw, 377px">
             </td>
         </tr>
         <tr>

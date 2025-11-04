@@ -1,8 +1,7 @@
 <nav class="navbar-sticky navbar-glass">
     <div class="navbar bg-transparent mx-auto container shadow-none ">
         <div class="navbar-start">
-            <a wire:navigate href="/{{ $lang }}" class="navbar-item font-extrabold text-blue-500">
-                <img class="w-12 h-8" src="{{ asset('logo.png') }}" alt="Sultanalfouzanco">
+            <a wire:navigate href="/{{ $lang }}" class="navbar-item font-extrabold text-blue-500"><img width="377" height="76" src="https://alesnaad.com/wp-content/uploads/2023/11/14-377x76.jpg" class="custom-logo" alt="شركة الاسناد الماسي" decoding="async" srcset="https://alesnaad.com/wp-content/uploads/2023/11/14-377x76.jpg 377w, https://alesnaad.com/wp-content/uploads/2023/11/14-300x61.jpg 300w, https://alesnaad.com/wp-content/uploads/2023/11/14-768x155.jpg 768w, https://alesnaad.com/wp-content/uploads/2023/11/14.jpg 976w" sizes="(max-width: 377px) 100vw, 377px">
             </a>
         </div>
         <div class=" hidden md:navbar-end text-sm">

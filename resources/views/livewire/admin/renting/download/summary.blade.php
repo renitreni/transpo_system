@@ -51,7 +51,7 @@
         <p >Track #: {{ $rent->track_number }} <span style="margin-left: 460px;">Entry Date: {{ $rent->entry_date }}</span></p>
         <p >Purchase #:{{ $rent->purchase_number }} </p>
     </div>
-    <img src="{{ public_path('long_logo.png') }}">
+    <img width="377" height="76" src="https://alesnaad.com/wp-content/uploads/2023/11/14-377x76.jpg" class="custom-logo" alt="شركة الاسناد الماسي" decoding="async" srcset="https://alesnaad.com/wp-content/uploads/2023/11/14-377x76.jpg 377w, https://alesnaad.com/wp-content/uploads/2023/11/14-300x61.jpg 300w, https://alesnaad.com/wp-content/uploads/2023/11/14-768x155.jpg 768w, https://alesnaad.com/wp-content/uploads/2023/11/14.jpg 976w" sizes="(max-width: 377px) 100vw, 377px">
 
     <table>
         <h4>Client</h4>

@@ -1,6 +1,6 @@
 <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-lg">
-        <img class="w-[350px] mx-auto h-auto" src="{{ asset('logo.png') }}" alt="logo">
+        <img width="377" height="76" src="https://alesnaad.com/wp-content/uploads/2023/11/14-377x76.jpg" class="custom-logo" alt="شركة الاسناد الماسي" decoding="async" srcset="https://alesnaad.com/wp-content/uploads/2023/11/14-377x76.jpg 377w, https://alesnaad.com/wp-content/uploads/2023/11/14-300x61.jpg 300w, https://alesnaad.com/wp-content/uploads/2023/11/14-768x155.jpg 768w, https://alesnaad.com/wp-content/uploads/2023/11/14.jpg 976w" sizes="(max-width: 377px) 100vw, 377px">
         {{-- <h1 class="text-center text-2xl font-bold text-zinc-600 dark:text-slate-200 sm:text-3xl">Sultanalfouzanco</h1> --}}
         <p class="text-center text-lg font-medium">Sign in to your account</p>
         <form wire:submit.prevent='login' class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg border sm:p-6 lg:p-8">
