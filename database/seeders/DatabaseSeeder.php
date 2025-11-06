@@ -18,66 +18,66 @@ class DatabaseSeeder extends Seeder
         // Admins Account
         \App\Models\User::factory()->create([
             'name' => 'Ibraheem',
-            'email' => 'ibraheem@alesnaad.online',
+            'email' => 'admin1@alesnaad.online',
             'role' => 'Admin',
-            'password' => Hash::make('Ibraheem2024'),
+            'password' => Hash::make('password'),
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'Koshnor',
             'role' => 'Admin',
-            'email' => 'koshnor@alesnaad.online',
-            'password' => Hash::make('Koshnor2024'),
+            'email' => 'admin2@alesnaad.online',
+            'password' => Hash::make('password'),
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'Fouzan',
             'role' => 'Admin',
-            'email' => 'fouzan@alesnaad.online',
-            'password' => Hash::make('Fouzan2024'),
+            'email' => 'admin3@alesnaad.online',
+            'password' => Hash::make('password'),
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'role' => 'Admin',
-            'email' => 'Admin@alesnaad.online',
-            'password' => Hash::make('Admin2024'),
+            'email' => 'admin4@alesnaad.online',
+            'password' => Hash::make('password'),
         ]);
 
         // Employees Account
         \App\Models\User::factory()->create([
             'name' => 'Mechanic',
-            'email' => 'mechanic@alesnaad.online',
+            'email' => 'mechanic1@alesnaad.online',
             'role' => 'Mechanic',
-            'password' => Hash::make('Mechanic2024'),
+            'password' => Hash::make('password'),
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'Ensign',
-            'email' => 'admin@ensign',
+            'email' => 'ensign1@alesnaad.online',
             'role' => 'Ensign',
-            'password' => Hash::make('Ensign_123'),
+            'password' => Hash::make('password'),
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'Camc',
-            'email' => 'admin@camc',
+            'email' => 'camc1@alesnaad.online',
             'role' => 'Camc',
-            'password' => Hash::make('Camc_123'),
+            'password' => Hash::make('password'),
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'Ibraheem',
-            'email' => 'ibraheem@renting',
+            'email' => 'renting1@alesnaad.online',
             'role' => 'Renting',
-            'password' => Hash::make('Ibraheem_123'),
+            'password' => Hash::make('password'),
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'Hasan',
-            'email' => 'hasan@renting',
+            'email' => 'fleet1@alesnaad.online',
             'role' => 'Fleet',
-            'password' => Hash::make('Hasan_123'),
+            'password' => Hash::make('password'),
         ]);
     }
 }
