@@ -56,7 +56,7 @@ Route::prefix('admin')->group(function () {
             Route::get('@manage-inquiries', ManageInquiries::class)->name('admin_ManageInquiries');
         });
 
-        Route::get('{lang}@inventory', Error::class)->name('admin_ManageInventories');
+        Route::get('{lang}@inventory', \App\Livewire\Admin\Inventory\ManageInventories::class)->name('admin_ManageInventories');
 
         Route::get('{lang}@stocks={type}', ManageStocks::class)->name('admin_ManageStocks');
         Route::get('{lang}@stocks/chassis={chassisNumber}', GeneralSearchResult::class)->name('admin_generalSearch');
