@@ -2,10 +2,28 @@
     <tr wire:key='{{ $customer->Customer_uuid }}'>
         <th>{{ $loop->iteration  }}</th>
         <td>{{ $customer->FullName }}</td>
-        <td>{{ $customer->CompanyName}}</td>
-        <td>{{ $customer->MethodPayment  }}</td>
+        <td>{{ $customer->Email }}</td>
+        <td>{{ $customer->PhoneNumber }}</td>
+        <td>{{ $customer->FaxNumber }}</td>
+        <td>{{ $customer->CompanyRegistration }}</td>
+        <td>{{ $customer->CompanyName }}</td>
+        <td>{{ str($customer->OfficeAddress)->limit(30) }}</td>
+        <td>{{ str($customer->OtherLocation)->limit(30) }}</td>
         <td>{{ $customer->OrderDate }}</td>
-
+        <td>{{ $customer->MethodPayment }}</td>
+        <td>{{ $customer->driver_name }}</td>
+        <td>{{ $customer->car_insurance_company }}</td>
+        <td>{{ $customer->resident_iqama_number }}</td>
+        <td>{{ $customer->driver_license_number }}</td>
+        <td>{{ $customer->driver_license_expiry_date ? \Carbon\Carbon::parse($customer->driver_license_expiry_date)->format('M d, Y') : '' }}</td>
+        <td>{{ $customer->insurance_expiry_date ? \Carbon\Carbon::parse($customer->insurance_expiry_date)->format('M d, Y') : '' }}</td>
+        <td>
+            @if ($customer->driver_status)
+                <span class="badge badge-{{ $customer->driver_status === 'active' ? 'success' : ($customer->driver_status === 'inactive' ? 'error' : 'warning') }}">
+                    {{ ucfirst($customer->driver_status) }}
+                </span>
+            @endif
+        </td>
         <td>
             <div class="dropdown ">
                 <label class="p-0 mx-2 bg-transparent cursor-pointer btn" tabindex="0">
@@ -19,6 +37,6 @@
     </tr>
 @empty
     <tr>
-        <td colspan="12">No Clients</td>
+        <td colspan="19">No Clients</td>
     </tr>
 @endforelse

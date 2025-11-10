@@ -23,9 +23,22 @@
                 <tr>
                     <th></th>
                     <th>Client Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Fax Number</th>
+                    <th>Company Registration</th>
                     <th>Company Name/ اسم الشركة</th>
-                    <th>Method of Payment</th>
+                    <th>Office Address</th>
+                    <th>Other Location</th>
                     <th>Date Purchased</th>
+                    <th>Method of Payment</th>
+                    <th>Driver Name</th>
+                    <th>Car Insurance Company</th>
+                    <th>Resident Iqama Number</th>
+                    <th>Driver License Number</th>
+                    <th>Driver License Expiry Date</th>
+                    <th>Insurance Expiry Date</th>
+                    <th>Driver Status</th>
                     <th></th>
                 </tr>
             </thead>

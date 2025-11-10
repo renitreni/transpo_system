@@ -1,10 +1,10 @@
-<div class="flex flex-row sm:gap-6 ">
+<div class="flex flex-row sm:gap-6">
 
-    <div class="sm:w-full sm:max-w-[18rem]">
+    <div class="flex-shrink-0 w-full sm:w-auto sm:max-w-[18rem]">
         <input type="checkbox" id="sidebar-mobile-fixed" class="sidebar-state" />
         <label for="sidebar-mobile-fixed" class="sidebar-overlay"></label>
         <aside
-            class="justify-start h-full sidebar sidebar-fixed-left sidebar-mobile max-sm:fixed max-sm:-translate-x-full">
+            class="justify-start h-full sidebar sidebar-fixed-left sidebar-mobile max-sm:fixed max-sm:-translate-x-full sm:relative sm:translate-x-0">
             <section class="items-center p-4 sidebar-title">
                 <div class="flex flex-col">
                     <div class="flex items-center space-x-10">
@@ -168,7 +168,7 @@
             </section>
         </aside>
     </div>
-    <div class="flex flex-col w-full p-4">
+    <div class="flex flex-col flex-1 min-w-0 p-4">
         <div class="w-fit">
             <label for="sidebar-mobile-fixed" class="btn-primary btn sm:hidden">Open Sidebar</label>
         </div>

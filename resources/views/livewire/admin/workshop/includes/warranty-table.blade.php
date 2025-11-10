@@ -2,11 +2,23 @@
     <table class="table max-w-5xl mt-10 table-compact">
         <thead>
             <tr>
-                <th>Brand</th>
+                <th>Name</th>
+                <th>Phone Number</th>
                 <th>Company</th>
-                <th>VIN</th>
                 <th>Location</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>VIN</th>
+                <th>Odometer</th>
+                <th>Hours</th>
+                <th>Plate Number</th>
+                <th>Color</th>
+                <th>Approved By</th>
+                <th>Date Approved</th>
+                <th>Destination</th>
+                <th>Decision</th>
                 <th>Status</th>
+                <th>Report</th>
                 <th>Approval</th>
                 <th>Return Date</th>
                 <th></th>
@@ -15,10 +27,21 @@
         <tbody>
             @forelse ( $collections as $collection )
                 <tr wire:key='{{ $collection->id }}'>
-                    <th>{{ $collection->Brand }}</th>
+                    <th>{{ str($collection->Name)->limit(25) }}</th>
+                    <td>{{ $collection->PhoneNumber }}</td>
                     <td>{{ str($collection->Company)->limit(35) }}</td>
-                    <td>{{ $collection->VIN_ID }}</td>
                     <td>{{ str($collection->Location)->limit(35) }}</td>
+                    <td>{{ $collection->Brand }}</td>
+                    <td>{{ $collection->Model }}</td>
+                    <td>{{ $collection->VIN_ID }}</td>
+                    <td>{{ $collection->Odometer }}</td>
+                    <td>{{ $collection->Hours }}</td>
+                    <td>{{ $collection->PlateNumber }}</td>
+                    <td>{{ $collection->Color }}</td>
+                    <td>{{ $collection->ApprovedBy }}</td>
+                    <td>{{ $collection->DateApproved ? \Carbon\Carbon::parse($collection->DateApproved)->format('M d, Y') : '' }}</td>
+                    <td>{{ str($collection->Destination)->limit(25) }}</td>
+                    <td>{{ $collection->Decision }}</td>
                     <td>
                         @if ($collection->Status)
                             <span class="badge badge-outline-success">Working</span>
@@ -26,6 +49,7 @@
                             <span class="badge badge-outline-error">Need Repair</span>
                         @endif
                     </td>
+                    <td>{{ str($collection->Report)->limit(30) }}</td>
                     <td>
                     @if (isset($collection->supplierStatus->Decision) && $collection->supplierStatus->Decision && $selectStatus != 'empty')
                         <span
@@ -68,7 +92,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="12">No list</td>
+                <td colspan="20">No list</td>
             </tr>
         @endforelse
     </tbody>
