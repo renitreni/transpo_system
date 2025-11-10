@@ -14,36 +14,14 @@
                     @error('FullName') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
-
                 <div class="flex flex-col justify-center">
-                    <label class="text-sm">Email/البريد الإلكتروني</label>
-                    <input wire:model='Email' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('Email') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
-                </div>
-
-
-                <div class="flex flex-col justify-center">
-                    <label class="text-sm">Contact Number/رقم الاتصال</label>
+                    <label class="text-sm">Contact Number / رقم الاتصال</label>
                     <input wire:model='PhoneNumber' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
                     @error('PhoneNumber') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
-
                 <div class="flex flex-col justify-center">
-                    <label class="text-sm">Fax Number/رقم الفاكس</label>
-                    <input wire:model='FaxNumber' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('FaxNumber') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
-                </div>
-
-
-                <div class="flex flex-col justify-center ">
-                    <label class="text-sm">Company Registration/تسجيل الشركة</label>
-                    <input wire:model='CompanyRegistration' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('CompanyRegistration') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
-                </div>
-
-                <div class="flex flex-col justify-center">
-                    <label class="text-sm">Company Name/اسم الشركة</label>
+                    <label class="text-sm">Company Name / اسم الشركة</label>
                     <input wire:model='CompanyName' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
                     @error('CompanyName') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
@@ -57,9 +35,56 @@
 
 
                 <div class="flex flex-col justify-center col-span-2">
-                    <label class="text-sm">Other location/موقع آخر ( Optional )</label>
+                    <label class="text-sm">Other location / موقع آخر ( Optional )</label>
                     <input wire:model='OtherLocation' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
                     @error('OtherLocation') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">Driver Name / اسم السائق</label>
+                    <input wire:model='driver_name' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('driver_name') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">Car Insurance Company / شركة تأمين السيارات</label>
+                    <input wire:model='car_insurance_company' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('car_insurance_company') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">Resident/Iqama Number / رقم المقيم أو رقم الإقامة</label>
+                    <input wire:model='resident_iqama_number' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('resident_iqama_number') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">Driver License Number / رقم رخصة القيادة</label>
+                    <input wire:model='driver_license_number' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('driver_license_number') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">License Expiry Date / تاريخ انتهاء الرخصة</label>
+                    <input wire:model='driver_license_expiry_date' autocomplete="off" type="date" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('driver_license_expiry_date') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">Insurance Expiry Date / تاريخ انتهاء التأمين</label>
+                    <input wire:model='insurance_expiry_date' autocomplete="off" type="date" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('insurance_expiry_date') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">Driver Status / حالة السائق</label>
+                    <select wire:model='driver_status' class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                        <option value="">-- Select Status / اختر الحالة --</option>
+                        @foreach($driverStatusOptions as $status)
+                            <option value="{{ $status->value }}">{{ $status->value }}</option>
+                        @endforeach
+                    </select>
+                    @error('driver_status') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
 
@@ -93,14 +118,6 @@
                 </div>
                 @error('OrderStatus') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror --}}
 
-                <div class="mt-2">
-                    <label  class="text-sm">Payment/دفعة</label>
-                    <select wire:model.defer='MethodPayment' class="text-sm border rounded-md select">
-                        <option selected value="Bank">Bank</option>
-                        <option value="Cash" @if($MethodPayment == "Cash") selected @endif>Cash</option>
-                    </select>
-                </div>
-                @error('MethodPayment') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
 
 
             </div>

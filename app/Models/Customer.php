@@ -23,6 +23,13 @@ class Customer extends Model
         'OtherLocation',
         'OrderDate',
         'MethodPayment',
+        'driver_name',
+        'car_insurance_company',
+        'resident_iqama_number',
+        'driver_license_number',
+        'driver_license_expiry_date',
+        'insurance_expiry_date',
+        'driver_status',
     ];
 
     public function orders(): HasMany

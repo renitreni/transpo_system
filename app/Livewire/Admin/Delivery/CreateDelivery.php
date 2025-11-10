@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Delivery;
 
+use App\Enums\DriverStatusEnum;
 use App\Models\Customer;
 use App\Models\Log;
 use App\Models\Order;
@@ -17,33 +18,21 @@ class CreateDelivery extends Component
 {
     public $products = [];
 
-    //#[Rule('required')]
-    public string $FullName;
-
-    //#[Rule('required')]
-    public string $Email;
-
-    //#[Rule('required')]
-    public string $PhoneNumber;
-
-    public string $FaxNumber;
-
-    //#[Rule('required')]
-    public string $CompanyRegistration;
-
-    //#[Rule('required')]
-    public string $CompanyName;
-
-    //#[Rule('required')]
-    public string $OfficeAddress;
-
-    public string $OtherLocation;
-
-    //#[Rule('required')]
-    public string $OrderDate;
-
-    //#[Rule('required')]
-    public string $MethodPayment = 'Bank';
+    public $FullName;
+    public $PhoneNumber;
+    public $CompanyName;
+    public $OfficeAddress;
+    public $OtherLocation;
+    public $OrderDate;
+    
+    // New driver fields
+    public $driver_name;
+    public $car_insurance_company;
+    public $resident_iqama_number;
+    public $driver_license_number;
+    public $driver_license_expiry_date;
+    public $insurance_expiry_date;
+    public $driver_status;
     //public int $OrderSubtotal = 0;
     ////#[Rule('required')]
     //public int $OrderShippingFee = 0;
@@ -110,15 +99,18 @@ class CreateDelivery extends Component
         } else {
             $customer_data = [
                 'FullName' => $this->FullName ?? 'N/A',
-                'Email' => $this->Email ?? 'N/A',
                 'PhoneNumber' => $this->PhoneNumber ?? 'N/A',
-                'FaxNumber' => $this->FaxNumber ?? 'N/A',
-                'CompanyRegistration' => $this->CompanyRegistration ?? 'N/A',
                 'CompanyName' => $this->CompanyName ?? 'N/A',
                 'OfficeAddress' => $this->OfficeAddress ?? 'N/A',
-                'OtherLocation' => $this->OtherLocation ?? 'N/A',
-                'OrderDate' => $this->OrderDate ?? 'N/A',
-                'MethodPayment' => $this->MethodPayment ?? 'N/A',
+                'OtherLocation' => $this->OtherLocation ?? null,
+                'OrderDate' => $this->OrderDate ?? null,
+                'driver_name' => $this->driver_name ?? null,
+                'car_insurance_company' => $this->car_insurance_company ?? null,
+                'resident_iqama_number' => $this->resident_iqama_number ?? null,
+                'driver_license_number' => $this->driver_license_number ?? null,
+                'driver_license_expiry_date' => $this->driver_license_expiry_date ?? null,
+                'insurance_expiry_date' => $this->insurance_expiry_date ?? null,
+                'driver_status' => $this->driver_status ?? null,
             ];
 
             $customer = new Customer;
@@ -177,6 +169,8 @@ class CreateDelivery extends Component
 
     public function render()
     {
-        return view('livewire.admin.delivery.create-delivery');
+        return view('livewire.admin.delivery.create-delivery', [
+            'driverStatusOptions' => DriverStatusEnum::cases(),
+        ]);
     }
 }
