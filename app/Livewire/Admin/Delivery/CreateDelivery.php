@@ -29,6 +29,8 @@ class CreateDelivery extends Component
     public $driver_name;
     public $car_insurance_company;
     public $resident_iqama_number;
+    public $date_of_entry_iqama_number;
+    public $validity_of_iqama;
     public $driver_license_number;
     public $driver_license_expiry_date;
     public $insurance_expiry_date;
@@ -108,6 +110,8 @@ class CreateDelivery extends Component
                 'driver_name' => $this->driver_name ?? null,
                 'car_insurance_company' => $this->car_insurance_company ?? null,
                 'resident_iqama_number' => $this->resident_iqama_number ?? null,
+                'date_of_entry_iqama_number' => $this->date_of_entry_iqama_number ?? null,
+                'validity_of_iqama' => $this->validity_of_iqama ?? null,
                 'driver_license_number' => $this->driver_license_number ?? null,
                 'driver_license_expiry_date' => $this->driver_license_expiry_date ?? null,
                 'insurance_expiry_date' => $this->insurance_expiry_date ?? null,

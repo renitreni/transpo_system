@@ -117,6 +117,24 @@
                 </div>
 
                 <div class="flex flex-col justify-center">
+                    <label class="text-sm">Date of Entry Iqama Number / تاريخ دخول رقم الإقامة</label>
+                    <input wire:model='date_of_entry_iqama_number' autocomplete="off" type="date"
+                        class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('date_of_entry_iqama_number')
+                        <span class="text-xs text-rose-600">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">Validity of Iqama / صلاحية الإقامة</label>
+                    <input wire:model='validity_of_iqama' autocomplete="off" type="date"
+                        class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('validity_of_iqama')
+                        <span class="text-xs text-rose-600">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
                     <label class="text-sm">Driver Status / حالة السائق</label>
                     <select wire:model='driver_status'
                         class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">

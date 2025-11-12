@@ -26,6 +26,8 @@ class Customer extends Model
         'driver_name',
         'car_insurance_company',
         'resident_iqama_number',
+        'date_of_entry_iqama_number',
+        'validity_of_iqama',
         'driver_license_number',
         'driver_license_expiry_date',
         'insurance_expiry_date',
