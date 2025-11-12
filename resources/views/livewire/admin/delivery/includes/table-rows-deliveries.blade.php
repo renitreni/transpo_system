@@ -2,8 +2,8 @@
 
     @php
         $rowClass = '';
-        if ($customer->insurance_expiry_date) {
-            $expiryDate = \Carbon\Carbon::parse($customer->insurance_expiry_date);
+        if ($customer->date_of_insurance_entry) {
+            $expiryDate = \Carbon\Carbon::parse($customer->date_of_insurance_entry);
             $today = \Carbon\Carbon::now();
             $daysUntilExpiry = $today->diffInDays($expiryDate);
 
