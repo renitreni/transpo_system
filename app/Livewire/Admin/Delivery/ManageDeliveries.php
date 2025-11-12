@@ -106,6 +106,7 @@ class ManageDeliveries extends Component
     {
         $customers = Customer::oldest()
             ->select(
+                'date_of_insurance_entry',
                 'Customer_uuid',
                 'PlateNo',
                 'PhoneNumber',
