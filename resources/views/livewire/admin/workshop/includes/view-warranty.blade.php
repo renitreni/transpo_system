@@ -126,18 +126,32 @@
                         <span class="text-xs">Uploaded Images and Videos</span>
                         <div class="flex flex-wrap gap-2 text-sm ">
                             @if ($viewData)
-                            @forelse ($viewData->files as $file)
-                            @if (file_exists(public_path('storage/uploads/images/'.$file->FileName)))
                             @php
-                            $imgVid = explode('.',$file->FileName);
+                                $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'bmp'];
+                                $videoExtensions = ['mp4', 'mov', 'avi', 'webm', 'mkv'];
                             @endphp
+                            @forelse ($viewData->files as $file)
+                            @php
+                                $extension = strtolower(pathinfo($file->FileName, PATHINFO_EXTENSION));
+                                $isImage = in_array($extension, $imageExtensions);
+                                $isVideo = in_array($extension, $videoExtensions);
+                                $isMedia = $isImage || $isVideo;
+                                
+                                if ($isMedia) {
+                                    $filePath = storage_path('app/public/uploads/images/' . $file->FileName);
+                                    $fileExists = file_exists($filePath);
+                                } else {
+                                    $fileExists = false;
+                                }
+                            @endphp
+                            @if ($isMedia && $fileExists)
                             <a wire:key='{{ $file->id }}' class="flex items-center gap-2"
                                 href="{{ asset('storage/uploads/images/'.$file->FileName) }}" download>
-                                @if($imgVid[1] !== "mp4")
+                                @if($isImage)
                                 <img class="rounded w-28 h-28"
                                     src="{{ asset('storage/uploads/images/'.$file->FileName) }}"
                                     alt="{{ $file->FileName }}">
-                                @else
+                                @elseif($isVideo)
                                 <video class="w-32 rounded h-28" controls
                                     src="{{ asset('storage/uploads/images/'.$file->FileName) }}"></video>
                                 @endif
@@ -155,8 +169,22 @@
                         <span class="text-xs">Uploaded Files</span>
                         <div class="flex flex-wrap gap-2 text-sm ">
                             @if ($viewData)
+                            @php
+                                $documentExtensions = ['pdf', 'doc', 'docx', 'txt', 'xls', 'xlsx', 'csv'];
+                            @endphp
                             @forelse ($viewData->files as $file)
-                            @if (file_exists(public_path('storage/uploads/files/'.$file->FileName)))
+                            @php
+                                $extension = strtolower(pathinfo($file->FileName, PATHINFO_EXTENSION));
+                                $isDocument = in_array($extension, $documentExtensions);
+                                
+                                if ($isDocument) {
+                                    $filePath = storage_path('app/public/uploads/files/' . $file->FileName);
+                                    $fileExists = file_exists($filePath);
+                                } else {
+                                    $fileExists = false;
+                                }
+                            @endphp
+                            @if ($isDocument && $fileExists)
                             <a wire:key='{{ $file->id }}' class="flex items-center gap-2"
                                 href="{{ asset('storage/uploads/files/'.$file->FileName) }}" download>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -537,5 +565,12 @@
     {
         $('body').find('#modal-warranty').css('opacity', '0').css('visibility', 'hidden')
     }
+
+    // Listen for Livewire event
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('open-warranty-modal', () => {
+            openViewWarranty();
+        });
+    });
 </script>
 @endpush

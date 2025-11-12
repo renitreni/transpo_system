@@ -136,14 +136,46 @@
         <div class="{{ $boxStyle }} col-span-full">
             <h1 class="{{ $headerStyle }}">Report</h1>
             <div class="flex items-center gap-4 mt-6 text-sm">
-                <div class="flex flex-col">
+                <div class="flex flex-col flex-1">
                     <label>Upload Images</label>
-                    <input wire:model='form.Images' accept="image/*,video/*" type="file" multiple
-                        class="input-file" />
+                    <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true"
+                        x-on:livewire-upload-finish="uploading = false"
+                        x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false"
+                        x-on:livewire-upload-progress="progress = $event.detail.progress">
+                        <input wire:model='form.Images' accept="image/*,video/*" type="file" multiple
+                            class="input-file" />
+                        <!-- Progress Bar -->
+                        <div x-show="uploading" class="mt-2">
+                            <progress max="100" x-bind:value="progress"></progress>
+                        </div>
+                    </div>
+                    @if (!empty($form->Images))
+                        <div class="mt-2 text-xs text-green-600">
+                            <span class="font-semibold">{{ count($form->Images) }} file(s) selected:</span>
+                            @foreach ($form->Images as $image)
+                                <div class="ml-2">• {{ $image->getClientOriginalName() }}</div>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col flex-1">
                     <label>Upload Files</label>
-                    <input wire:model='form.File' accept=".pdf,.doc,.docx,.txt" type="file" class="input-file" />
+                    <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true"
+                        x-on:livewire-upload-finish="uploading = false"
+                        x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false"
+                        x-on:livewire-upload-progress="progress = $event.detail.progress">
+                        <input wire:model='form.File' accept=".pdf,.doc,.docx,.txt" type="file" class="input-file" />
+                        <!-- Progress Bar -->
+                        <div x-show="uploading" class="mt-2">
+                            <progress max="100" x-bind:value="progress"></progress>
+                        </div>
+                    </div>
+                    @if ($form->File)
+                        <div class="mt-2 text-xs text-green-600">
+                            <span class="font-semibold">File selected:</span>
+                            <div class="ml-2">• {{ $form->File->getClientOriginalName() }}</div>
+                        </div>
+                    @endif
                 </div>
             </div>
             <textarea wire:model='form.Report' required placeholder="Type something..."

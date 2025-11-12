@@ -37,7 +37,7 @@ class CreateWarranty extends Component
             $File = new WarrantyFiles;
             $File->Report_id = $report->id;
             $fileName = Carbon::now()->timestamp.uniqid().'.'.$this->form->File->extension();
-            $this->form->File->storeAs('storage/uploads/files', $fileName);
+            $this->form->File->storeAs('uploads/files', $fileName, 'public');
             $File->FileName = $fileName;
             $File->save();
         }
@@ -46,8 +46,8 @@ class CreateWarranty extends Component
             $Image = new WarrantyFiles;
             $Image->Report_id = $report->id;
 
-            $fileName = Carbon::now()->timestamp.$key.'.'.$this->form->Images[$key]->extension();
-            $this->form->Images[$key]->storeAs('storage/uploads/images', $fileName);
+            $fileName = Carbon::now()->timestamp.uniqid().'_'.$key.'.'.$this->form->Images[$key]->extension();
+            $this->form->Images[$key]->storeAs('uploads/images', $fileName, 'public');
 
             $Image->FileName = $fileName;
             $Image->save();

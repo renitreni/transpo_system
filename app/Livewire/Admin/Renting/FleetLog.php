@@ -83,7 +83,7 @@ class FleetLog extends Component
                 $filesize = number_format($file->getSize() / 1024, 2).' KB';
                 $fileMime = $file->getMimeType();
                 $fileExtension = $file->getClientOriginalExtension();
-                $file->storeAs('storage/uploads/renting/'.$filename);
+                $file->storeAs('uploads/renting', $filename, config('filesystems.default'));
                 $fleet->files()->create([
                     'filename' => $filename,
                     'mime' => $fileMime,
@@ -102,7 +102,7 @@ class FleetLog extends Component
         $files = FleetFile::where('log_id', $log->id)->get();
         if (! empty($files)) {
             foreach ($files as $file) {
-                Storage::disk('public')->delete('uploads/renting/'.$file->filename);
+                Storage::disk(config('filesystems.default'))->delete('uploads/renting/'.$file->filename);
                 FileLog::updateOrCreate([
                     'path' => 'storage/uploads/renting/'.$file->filename,
                 ], [

@@ -51,7 +51,7 @@ class RequestEquipment extends Component
         if (! empty($this->form->imgInputs)) {
             foreach ($this->form->imgInputs as $image) {
                 $filename = Carbon::now()->timestamp.'-'.uniqid().'.'.$image->extension();
-                $image->storeAs('storage/uploads/renting', $filename);
+                $image->storeAs('uploads/renting', $filename, config('filesystems.default'));
                 $files[] = [
                     'filename' => $filename,
                 ];
@@ -60,7 +60,7 @@ class RequestEquipment extends Component
         if (! empty($this->form->fileInputs)) {
             foreach ($this->form->fileInputs as $file) {
                 $filename = Carbon::now()->timestamp.'-'.uniqid().'.'.$file->extension();
-                $file->storeAs('storage/uploads/renting', $filename);
+                $file->storeAs('uploads/renting', $filename, config('filesystems.default'));
                 $files[] = [
                     'filename' => $filename,
                 ];
@@ -110,7 +110,7 @@ class RequestEquipment extends Component
             $totalFiles = count($this->checkedRows);
             foreach ($this->checkedRows as $row_id) {
                 $file = RentFile::select('id', 'filename')->where('id', $row_id)->first();
-                Storage::disk('public')->delete('uploads/renting/'.$file->filename);
+                Storage::disk(config('filesystems.default'))->delete('uploads/renting/'.$file->filename);
                 $file->delete();
                 FileLog::updateOrCreate([
                     'path' => 'storage/uploads/renting/'.$file->filename,
@@ -139,7 +139,7 @@ class RequestEquipment extends Component
             if (! empty($this->form->fileInputs)) {
                 foreach ($this->form->fileInputs as $file) {
                     $filename = Carbon::now()->timestamp.'-'.uniqid().'.'.$file->extension();
-                    $file->storeAs('storage/uploads/renting', $filename);
+                    $file->storeAs('uploads/renting', $filename, config('filesystems.default'));
                     RentFile::create([
                         'rent_id' => $this->rent_id,
                         'filename' => $filename,

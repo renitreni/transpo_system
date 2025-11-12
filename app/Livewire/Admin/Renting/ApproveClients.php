@@ -78,7 +78,7 @@ class ApproveClients extends Component
         if (! empty($this->images)) {
             foreach ($this->images as $image) {
                 $filename = $image->getClientOriginalName();
-                $image->storeAs('storage/uploads/renting/'.$filename);
+                $image->storeAs('uploads/renting', $filename, 'public');
                 $update->files()->create([
                     'rent_id' => $this->rent_id,
                     'filename' => $filename,

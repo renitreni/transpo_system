@@ -1,112 +1,275 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Admin\Workshop;
 
-use App\Livewire\Forms\WarrantyReportForm;
-use App\Models\FileLog;
-use App\Models\WarrantyFiles;
+use App\Models\SupplierWarranty;
 use App\Models\WarrantyReport;
-use Carbon\Carbon;
+use App\Services\FileUploadService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
+/**
+ * Edit Warranty Report Component
+ *
+ * This component handles the editing of warranty reports including
+ * form data updates and file uploads (images and documents).
+ *
+ * Key Features:
+ * - Update warranty report information
+ * - Upload multiple images (max 10)
+ * - Upload single document file
+ * - Delete existing files
+ * - Proper validation and error handling
+ */
 #[Title('Edit Warranty Report')]
 #[Layout('/livewire/layout/app')]
 class EditWarranty extends Component
 {
     use WithFileUploads;
 
-    public WarrantyReportForm $form;
+    /**
+     * The warranty report ID
+     *
+     * @var int
+     */
+    public $warrantyId;
 
-    public int $warranty_id;
+    /**
+     * Warranty report fields
+     *
+     * @var string
+     */
+    public $name = '';
+    public $phoneNumber = '';
+    public $company = '';
+    public $location = '';
+    public $brand = '';
+    public $model = '';
+    public $vinId = '';
+    public $odometer = '';
+    public $hours = '';
+    public $plateNumber = '';
+    public $color = '';
+    public $approvedBy = '';
+    public $dateApproved = '';
+    public $destination = '';
+    public $report = '';
 
-    public $files;
+    /**
+     * @var bool
+     */
+    public $status = false;
 
-    public $supplier;
+    /**
+     * Existing files
+     *
+     * @var array
+     */
+    public $files = [];
 
-    public function mount(int $warranty_id)
+    /**
+     * Supplier warranty status
+     *
+     * @var SupplierWarranty|null
+     */
+    public $supplier = null;
+
+    /**
+     * New images to upload (multiple)
+     *
+     * @var array
+     */
+    public $images = [];
+
+    /**
+     * New document file to upload (single)
+     *
+     * @var \Livewire\Features\SupportFileUploads\TemporaryUploadedFile|null
+     */
+    public $file = null;
+
+    /**
+     * File upload service
+     *
+     * @var FileUploadService
+     */
+    private $fileUploadService;
+
+    /**
+     * Boot the component
+     */
+    public function boot(FileUploadService $fileUploadService): void
     {
-        $this->warranty_id = $warranty_id;
-        $report = WarrantyReport::where('id', $warranty_id)->with('files')->with('supplierStatus')->first();
+        $this->fileUploadService = $fileUploadService;
+    }
+
+    /**
+     * Mount the component and load warranty data
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function mount(): void
+    {
+        $this->loadWarrantyData();
+    }
+
+    /**
+     * Load warranty report data
+     */
+    private function loadWarrantyData(): void
+    {
+        $report = WarrantyReport::with(['files', 'supplierStatus'])
+            ->findOrFail($this->warrantyId);
+
         $this->supplier = $report->supplierStatus;
-        $this->form->Name = $report->Name;
-        $this->form->PhoneNumber = $report->PhoneNumber;
-        $this->form->Company = $report->Company;
-        $this->form->Location = $report->Location;
-        $this->form->Brand = $report->Brand;
-        $this->form->Model = $report->Model;
-        $this->form->VIN_ID = $report->VIN_ID;
-        $this->form->Odometer = $report->Odometer;
-        $this->form->Hours = $report->Hours;
-        $this->form->PlateNumber = $report->PlateNumber;
-        $this->form->Color = $report->Color;
-        $this->form->ApprovedBy = $report->ApprovedBy;
-        $this->form->DateApproved = $report->DateApproved;
-        $this->form->Destination = $report->Destination;
-        $this->form->Status = $report->Status;
-        $this->form->Report = $report->Report;
-        $this->files = $report->files;
+        $this->files = $report->files->toArray();
+
+        // Populate component properties with existing data
+        $this->name = $report->Name;
+        $this->phoneNumber = $report->PhoneNumber;
+        $this->company = $report->Company;
+        $this->location = $report->Location;
+        $this->brand = $report->Brand;
+        $this->model = $report->Model;
+        $this->vinId = $report->VIN_ID;
+        $this->odometer = $report->Odometer;
+        $this->hours = $report->Hours;
+        $this->plateNumber = $report->PlateNumber;
+        $this->color = $report->Color;
+        $this->approvedBy = $report->ApprovedBy;
+        $this->dateApproved = $report->DateApproved;
+        $this->destination = $report->Destination;
+        $this->status = $report->Status;
+        $this->report = $report->Report;
     }
 
-    public function save_edit()
+    /**
+     * Save the edited warranty report
+     *
+     * This method updates the warranty report and handles file uploads.
+     * All text fields are converted to uppercase for consistency.
+     */
+    public function saveEdit()
     {
-        $report = WarrantyReport::where('id', $this->warranty_id)->with('files')->first();
-        $data = $this->form->all();
+        try {
+            // Update the warranty report
+            $this->updateWarrantyReport();
 
-        foreach ($data as $key => $value) {
-            if (is_string($value)) {
-                $data[$key] = strtoupper($value);
-            }
-        }
-        $report->fill($data);
-        $report->update();
+            // Handle file uploads
+            $this->handleFileUploads();
 
-        if ($this->form->File !== null) {
-            $File = new WarrantyFiles;
-            $File->Report_id = $report->id;
-            $fileName = Carbon::now()->timestamp.uniqid().'.'.$this->form->File->extension();
-            $this->form->File->storeAs('storage/uploads/files', $fileName);
-            $File->FileName = $fileName;
-            $File->save();
-        }
+            // Clear uploaded files from component state
+            $this->resetFileInputs();
 
-        if (! empty($this->form->Images)) {
-            foreach ($this->form->Images as $key => $image) {
-                $Image = new WarrantyFiles;
-                $Image->Report_id = $report->id;
+            session()->flash('success', 'Updated successfully.');
 
-                $fileName = Carbon::now()->timestamp.$key.'.'.$this->form->Images[$key]->extension();
-                $this->form->Images[$key]->storeAs('storage/uploads/images', $fileName);
-
-                $Image->FileName = $fileName;
-                $Image->save();
-            }
-        }
-
-        session()->flash('success', 'Updated successfully.');
-
-        return $this->redirect("@edit={$this->warranty_id}", navigate: true);
-    }
-
-    public function delete_file(int $id)
-    {
-        $file = WarrantyFiles::where('id', $id)->first();
-        $filePath = public_path("storage/uploads/files/{$file->FileName}");
-        if (file_exists($filePath)) {
-            unlink($filePath);
-            FileLog::updateOrCreate([
-                'path' => $filePath,
-            ], [
-                'path' => $filePath,
-                'is_sync' => 3,
+            return $this->redirect("@edit={$this->warrantyId}");
+        } catch (\Exception $e) {
+            Log::error('Failed to update warranty report', [
+                'warranty_id' => $this->warrantyId,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
             ]);
+
+            session()->flash('error', 'Failed to update warranty report: ' . $e->getMessage());
         }
-        $file->delete();
     }
 
-    public function render()
+    /**
+     * Update warranty report data
+     */
+    private function updateWarrantyReport(): void
+    {
+        $report = WarrantyReport::findOrFail($this->warrantyId);
+
+        // Update report with component properties (converted to uppercase)
+        $report->Name = strtoupper($this->name);
+        $report->PhoneNumber = $this->phoneNumber;
+        $report->Company = strtoupper($this->company);
+        $report->Location = strtoupper($this->location);
+        $report->Brand = strtoupper($this->brand);
+        $report->Model = strtoupper($this->model);
+        $report->VIN_ID = strtoupper($this->vinId);
+        $report->Odometer = strtoupper($this->odometer);
+        $report->Hours = strtoupper($this->hours);
+        $report->PlateNumber = strtoupper($this->plateNumber);
+        $report->Color = strtoupper($this->color);
+        $report->ApprovedBy = strtoupper($this->approvedBy);
+        $report->DateApproved = strtoupper($this->dateApproved);
+        $report->Destination = strtoupper($this->destination);
+        $report->Status = $this->status;
+        $report->Report = strtoupper($this->report);
+
+        $report->save();
+    }
+
+    /**
+     * Handle file uploads (images and document)
+     */
+    private function handleFileUploads(): void
+    {
+        // Upload document if provided
+        if ($this->file !== null) {
+            $this->validate([
+                'file' => 'required|file|max:10240|mimes:pdf,doc,docx,xls,xlsx,txt',
+            ]);
+
+            $this->fileUploadService->uploadDocument($this->file, $this->warrantyId);
+        }
+        
+        // Upload images if provided
+        if (!empty($this->images)) {
+            $this->validate([
+                'images.*' => 'required|image|max:10240|mimes:jpg,jpeg,png,gif,webp,svg,bmp',
+            ]);
+
+            $this->fileUploadService->uploadImages($this->images, $this->warrantyId);
+        }
+    }
+
+    /**
+     * Reset file inputs after upload
+     */
+    private function resetFileInputs(): void
+    {
+        $this->images = [];
+        $this->file = null;
+    }
+
+    /**
+     * Delete a file
+     *
+     * @param int $fileId The ID of the file to delete
+     */
+    public function deleteFile(int $fileId): void
+    {
+        try {
+            $this->fileUploadService->deleteFile($fileId);
+
+            // Reload warranty data to refresh file list
+            $this->loadWarrantyData();
+
+            session()->flash('success', 'File deleted successfully.');
+        } catch (\Exception $e) {
+            Log::error('Failed to delete file', [
+                'file_id' => $fileId,
+                'error' => $e->getMessage(),
+            ]);
+
+            session()->flash('error', 'Failed to delete file: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Render the component
+     */
+    public function render(): View
     {
         return view('livewire.admin.workshop.edit-warranty');
     }

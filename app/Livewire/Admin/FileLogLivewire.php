@@ -33,12 +33,15 @@ class FileLogLivewire extends Component
 
     public function uploadThis($path)
     {
-        Storage::disk('do')->put(config('filesystems.disks.do.folder').'/'.config('app.env').'/'.$path, Storage::get($path));
+        // Get file from default disk and upload to Digital Ocean
+        $fileContents = Storage::disk(config('filesystems.default'))->get($path);
+        Storage::disk('do')->put(config('filesystems.disks.do.folder').'/'.config('app.env').'/'.$path, $fileContents);
     }
 
     public function reSyncImages()
     {
-        foreach (Storage::allFiles('storage/uploads/images') as $item) {
+        // Correctly reference the path within the default disk
+        foreach (Storage::disk(config('filesystems.default'))->allFiles('uploads/images') as $item) {
             FileLog::updateOrCreate(['path' => $item], ['is_sync' => 0]);
         }
     }

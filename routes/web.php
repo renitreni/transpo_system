@@ -73,7 +73,7 @@ Route::prefix('admin')->group(function () {
             Route::get('@manage', ManageWarranty::class)->name('admin_ManageWarranty');
             Route::get('@create', CreateWarranty::class)->name('admin_CreateWarranty');
             Route::get('@create/approval={id}', ApprovalForm::class)->name('admin_Approval');
-            Route::get('@edit={warranty_id}', EditWarranty::class)->name('admin_EditWarranty');
+            Route::get('@edit={warrantyId}', EditWarranty::class)->name('admin_EditWarranty');
             Route::get('@edit/details/{id}', Edit::class)->name('admin_EditSupplier');
         });
 

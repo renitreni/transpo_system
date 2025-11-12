@@ -28,7 +28,7 @@ class ManageWarranty extends Component
 
     public $selectStatus = '';
 
-    public string $bgColor;
+    public string $bgColor = '';
 
     public function mount()
     {
@@ -42,8 +42,6 @@ class ManageWarranty extends Component
 
     public function viewWarranty(int $id)
     {
-        $this->js('openViewWarranty()');
-
         $this->viewData = WarrantyReport::where('id', $id)->with('files')->with('supplierStatus')->first();
 
         if (isset($this->viewData->supplierStatus->Decision) && $this->viewData->supplierStatus->Decision == 'Approved') {
@@ -53,6 +51,8 @@ class ManageWarranty extends Component
         } elseif (! isset($this->viewData->supplierStatus->Decision)) {
             $this->bgColor = '#f5d954';
         }
+
+        $this->dispatch('open-warranty-modal');
     }
 
     public function cancel(): array

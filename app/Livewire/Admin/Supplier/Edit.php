@@ -175,19 +175,19 @@ class Edit extends Component
 
         if (isset($this->SignatureTech)) {
             $filename = uniqid().'-'.Carbon::now()->timestamp.'.'.$this->SignatureTech->extension();
-            $this->SignatureTech->storeAs('storage/uploads/supplier', $filename);
+            $this->SignatureTech->storeAs('uploads/supplier', $filename, 'public');
             $SigFileNameTech = $filename;
         }
 
         if (isset($this->SignatureCustomer)) {
             $filename = uniqid().'-'.Carbon::now()->timestamp.'.'.$this->SignatureCustomer->extension();
-            $this->SignatureCustomer->storeAs('storage/uploads/supplier', $filename);
+            $this->SignatureCustomer->storeAs('uploads/supplier', $filename, 'public');
             $SigFileNameCustomer = $filename;
         }
 
         if (isset($this->ApprovalSignature)) {
             $filename = uniqid().'-'.Carbon::now()->timestamp.'.'.$this->ApprovalSignature->extension();
-            $this->ApprovalSignature->storeAs('storage/uploads/supplier', $filename);
+            $this->ApprovalSignature->storeAs('uploads/supplier', $filename, 'public');
             $ApprovalSignature = $filename;
         }
 
@@ -248,7 +248,7 @@ class Edit extends Component
                 $File->Report_id = $this->report_id;
 
                 $fileName = Carbon::now()->timestamp.$key.'.'.$this->Files[$key]->extension();
-                $this->Files[$key]->storeAs('storage/uploads/supplier/files', $fileName);
+                $this->Files[$key]->storeAs('uploads/supplier/files', $fileName, 'public');
 
                 $File->FileName = $fileName;
                 $File->save();

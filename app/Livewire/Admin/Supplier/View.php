@@ -192,7 +192,7 @@ class View extends Component
         $file = '';
         if (isset($this->signedSignature)) {
             $filename = uniqid().'-'.Carbon::now()->timestamp.'.'.$this->signedSignature->extension();
-            $this->signedSignature->storeAs('storage/uploads/supplier', $filename);
+            $this->signedSignature->storeAs('uploads/supplier', $filename, 'public');
             $file = $filename;
         }
 

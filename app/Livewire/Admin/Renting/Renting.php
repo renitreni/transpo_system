@@ -119,6 +119,6 @@ class Renting extends Component
             'is_sync' => 3,
         ]);
 
-        return Storage::disk('public')->delete('uploads/renting/'.$filename);
+        return Storage::disk(config('filesystems.default'))->delete('uploads/renting/'.$filename);
     }
 }
