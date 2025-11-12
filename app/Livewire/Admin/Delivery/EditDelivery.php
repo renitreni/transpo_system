@@ -31,6 +31,7 @@ class EditDelivery extends Component
     public $driver_license_number;
     public $driver_license_expiry_date;
     public $insurance_expiry_date;
+    public $date_of_insurance_entry;
     public $driver_status;
 
     public $customer_id;
@@ -52,6 +53,7 @@ class EditDelivery extends Component
         $this->driver_license_number = $customer->driver_license_number;
         $this->driver_license_expiry_date = $customer->driver_license_expiry_date;
         $this->insurance_expiry_date = $customer->insurance_expiry_date;
+        $this->date_of_insurance_entry = $customer->date_of_insurance_entry;
         $this->driver_status = $customer->driver_status;
 
         foreach ($orders as $order) {
@@ -127,6 +129,7 @@ class EditDelivery extends Component
                 'driver_license_number' => $this->driver_license_number ?? null,
                 'driver_license_expiry_date' => $this->driver_license_expiry_date ?? null,
                 'insurance_expiry_date' => $this->insurance_expiry_date ?? null,
+                'date_of_insurance_entry' => $this->date_of_insurance_entry ?? null,
                 'driver_status' => $this->driver_status ?? null,
             ];
 

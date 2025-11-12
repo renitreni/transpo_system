@@ -7,7 +7,7 @@
             <div class="p-4  rounded relative before:absolute before:left-0 before:w-full before:h-1 before:content=[''] before:top-0 before:rounded-full before:bg-blue-500">
                 <h1 class="text-lg font-medium">Client Information / معلومات العميل</h1>
             </div>
-            <div class="grid grid-cols-3 gap-3 p-4">
+            <div class="grid grid-cols-4 gap-3 p-4">
                 <div class="flex flex-col justify-center">
                     <label class="text-sm">Plate No / رقم اللوحة</label>
                     <input wire:model='PlateNo' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
@@ -34,7 +34,7 @@
                 </div>
 
 
-                <div class="flex flex-col justify-center col-span-2">
+                <div class="flex flex-col justify-center col-span-4">
                     <label class="text-sm">Other location / موقع آخر ( Optional )</label>
                     <input wire:model='OtherLocation' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
                     @error('OtherLocation') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
@@ -52,10 +52,16 @@
                     @error('car_insurance_company') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
+
                 <div class="flex flex-col justify-center">
-                    <label class="text-sm">Resident/Iqama Number / رقم المقيم أو رقم الإقامة</label>
-                    <input wire:model='resident_iqama_number' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('resident_iqama_number') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                    <label class="text-sm">Date of Insurance Entry / تاريخ دخول التأمين</label>
+                    <input wire:model='date_of_insurance_entry' autocomplete="off" type="date" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('date_of_insurance_entry') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                </div>
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">Insurance Expiry Date / تاريخ انتهاء التأمين</label>
+                    <input wire:model='insurance_expiry_date' autocomplete="off" type="date" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('insurance_expiry_date') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
                 <div class="flex flex-col justify-center">
@@ -71,9 +77,9 @@
                 </div>
 
                 <div class="flex flex-col justify-center">
-                    <label class="text-sm">Insurance Expiry Date / تاريخ انتهاء التأمين</label>
-                    <input wire:model='insurance_expiry_date' autocomplete="off" type="date" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('insurance_expiry_date') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                    <label class="text-sm">Resident/Iqama Number / رقم المقيم أو رقم الإقامة</label>
+                    <input wire:model='resident_iqama_number' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('resident_iqama_number') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
                 <div class="flex flex-col justify-center">

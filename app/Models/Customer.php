@@ -29,6 +29,7 @@ class Customer extends Model
         'driver_license_number',
         'driver_license_expiry_date',
         'insurance_expiry_date',
+        'date_of_insurance_entry',
         'driver_status',
     ];
 
