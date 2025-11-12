@@ -23,15 +23,11 @@
                 <tr>
                     <th></th>
                     <th>Client Name</th>
-                    <th>Email</th>
                     <th>Phone Number</th>
-                    <th>Fax Number</th>
-                    <th>Company Registration</th>
                     <th>Company Name/ اسم الشركة</th>
                     <th>Office Address</th>
                     <th>Other Location</th>
                     <th>Date Purchased</th>
-                    <th>Method of Payment</th>
                     <th>Driver Name</th>
                     <th>Car Insurance Company</th>
                     <th>Resident Iqama Number</th>

@@ -2,15 +2,11 @@
     <tr wire:key='{{ $customer->Customer_uuid }}'>
         <th>{{ $loop->iteration  }}</th>
         <td>{{ $customer->FullName }}</td>
-        <td>{{ $customer->Email }}</td>
         <td>{{ $customer->PhoneNumber }}</td>
-        <td>{{ $customer->FaxNumber }}</td>
-        <td>{{ $customer->CompanyRegistration }}</td>
         <td>{{ $customer->CompanyName }}</td>
         <td>{{ str($customer->OfficeAddress)->limit(30) }}</td>
         <td>{{ str($customer->OtherLocation)->limit(30) }}</td>
         <td>{{ $customer->OrderDate }}</td>
-        <td>{{ $customer->MethodPayment }}</td>
         <td>{{ $customer->driver_name }}</td>
         <td>{{ $customer->car_insurance_company }}</td>
         <td>{{ $customer->resident_iqama_number }}</td>
@@ -37,6 +33,6 @@
     </tr>
 @empty
     <tr>
-        <td colspan="19">No Clients</td>
+        <td colspan="15">No Clients</td>
     </tr>
 @endforelse
