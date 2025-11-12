@@ -40,15 +40,15 @@ class ManageDeliveries extends Component
         ]);
         \App\Models\Log::newLog('Receipt Download', $customer->OrderTrackNumber);
 
-        if ($customer->FullName === 'N/A') {
+        if ($customer->PlateNo === 'N/A') {
             return response()->streamDownload(function () use ($pdf) {
                 echo $pdf->output();
-            }, 'No-Name'.' Receipt.pdf');
+            }, 'No-PlateNo'.' Receipt.pdf');
         }
 
         return response()->streamDownload(function () use ($pdf) {
             echo $pdf->output();
-        }, $customer->FullName.' Receipt.pdf');
+        }, $customer->PlateNo.' Receipt.pdf');
     }
 
     public function viewPurchase(?string $customer_uuid = null)
@@ -88,7 +88,7 @@ class ManageDeliveries extends Component
     {
         $customers = Customer::with('orders')
             ->where(function ($query) {
-                $query->where('FullName', 'like', "%{$this->search}%")
+                $query->where('PlateNo', 'like', "%{$this->search}%")
                     ->orWhereHas('orders', function ($orderQuery) {
                         $orderQuery->where('Product', 'like', "%{$this->search}%")
                             ->orWhere('Color', 'like', "%{$this->search}%")
@@ -105,8 +105,8 @@ class ManageDeliveries extends Component
     private function getAllCustomers(): LengthAwarePaginator
     {
         $customers = Customer::oldest()
-            ->select('Customer_uuid', 'FullName', 'CompanyName', 'MethodPayment', 'OrderDate')
-            ->where('FullName', 'like', "%{$this->search}%")
+            ->select('Customer_uuid', 'PlateNo', 'CompanyName', 'MethodPayment', 'OrderDate')
+            ->where('PlateNo', 'like', "%{$this->search}%")
             ->orWhere('CompanyName', 'like', "%{$this->search}%")
             ->paginate(6);
 

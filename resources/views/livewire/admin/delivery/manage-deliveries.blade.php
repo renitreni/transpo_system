@@ -22,7 +22,7 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Client Name</th>
+                    <th>Plate No / رقم اللوحة</th>
                     <th>Phone Number</th>
                     <th>Company Name/ اسم الشركة</th>
                     <th>Office Address</th>
@@ -49,7 +49,7 @@
         <table class="table max-w-5xl mt-10 table-compact">
             <thead>
                 <tr>
-                    <th>Client</th>
+                    <th>Plate No / رقم اللوحة</th>
                     <th>Company</th>
                     {{-- <th>Payment</th>
                     <th>Product</th>

@@ -1,7 +1,7 @@
 @forelse ( $customers as $index => $customer)
     @foreach ($customer->orders as $order )
     <tr wire:key='{{ $order->id }}'>
-        <td>{{ str($customer->FullName)->limit(30) }}</td>
+        <td>{{ str($customer->PlateNo)->limit(30) }}</td>
         <td>{{ str($customer->CompanyName)->limit(35) }}</td>
         {{-- <td>{{ $customer->MethodPayment  }}</td>
         <td>{{ $order->Product  }}</td>

@@ -9,9 +9,9 @@
             </div>
             <div class="grid grid-cols-3 gap-3 p-4">
                 <div class="flex flex-col justify-center">
-                    <label class="text-sm">Name / الاسم</label>
-                    <input wire:model='FullName' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('FullName') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                    <label class="text-sm">Plate No / رقم اللوحة</label>
+                    <input wire:model='PlateNo' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('PlateNo') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
                 <div class="flex flex-col justify-center">

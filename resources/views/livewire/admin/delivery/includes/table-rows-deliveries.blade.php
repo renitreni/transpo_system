@@ -1,7 +1,7 @@
 @forelse ( $customers as $index => $customer)
     <tr wire:key='{{ $customer->Customer_uuid }}'>
         <th>{{ $loop->iteration  }}</th>
-        <td>{{ $customer->FullName }}</td>
+        <td>{{ $customer->PlateNo }}</td>
         <td>{{ $customer->PhoneNumber }}</td>
         <td>{{ $customer->CompanyName }}</td>
         <td>{{ str($customer->OfficeAddress)->limit(30) }}</td>

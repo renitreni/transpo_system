@@ -18,7 +18,7 @@ class CreateDelivery extends Component
 {
     public $products = [];
 
-    public $FullName;
+    public $PlateNo;
     public $PhoneNumber;
     public $CompanyName;
     public $OfficeAddress;
@@ -98,7 +98,7 @@ class CreateDelivery extends Component
             return;
         } else {
             $customer_data = [
-                'FullName' => $this->FullName ?? 'N/A',
+                'PlateNo' => $this->PlateNo ?? 'N/A',
                 'PhoneNumber' => $this->PhoneNumber ?? 'N/A',
                 'CompanyName' => $this->CompanyName ?? 'N/A',
                 'OfficeAddress' => $this->OfficeAddress ?? 'N/A',

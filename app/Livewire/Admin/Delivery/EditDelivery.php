@@ -17,7 +17,7 @@ class EditDelivery extends Component
 {
     public $products = [];
 
-    public $FullName;
+    public $PlateNo;
     public $PhoneNumber;
     public $CompanyName;
     public $OfficeAddress;
@@ -40,7 +40,7 @@ class EditDelivery extends Component
         $customer = Customer::where('Customer_uuid', $customer_uuid)->first();
         $orders = Order::where('Customer_id', $customer->id)->get();
         $this->customer_id = $customer->id;
-        $this->FullName = $customer->FullName;
+        $this->PlateNo = $customer->PlateNo;
         $this->PhoneNumber = $customer->PhoneNumber;
         $this->CompanyName = $customer->CompanyName;
         $this->OfficeAddress = $customer->OfficeAddress;
@@ -115,7 +115,7 @@ class EditDelivery extends Component
             return;
         } else {
             $customer_data = [
-                'FullName' => $this->FullName ?? 'N/A',
+                'PlateNo' => $this->PlateNo ?? 'N/A',
                 'PhoneNumber' => $this->PhoneNumber ?? 'N/A',
                 'CompanyName' => $this->CompanyName ?? 'N/A',
                 'OfficeAddress' => $this->OfficeAddress ?? 'N/A',

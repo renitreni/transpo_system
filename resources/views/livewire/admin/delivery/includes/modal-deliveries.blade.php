@@ -12,8 +12,8 @@
             <div class="grid grid-cols-2 text-sm gap-x-6">
                 <div >
                     <div class="flex flex-col mb-4 border-b-2">
-                        <span class="text-xs">Name : </span>
-                        <span>{{ $data['customer']->FullName ?? "" }}</span>
+                        <span class="text-xs">Plate No : </span>
+                        <span>{{ $data['customer']->PlateNo ?? "" }}</span>
                     </div>
                     <div class="flex flex-col mb-4 border-b-2">
                         <span class="text-xs">Email : </span>

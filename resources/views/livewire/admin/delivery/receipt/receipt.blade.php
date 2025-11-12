@@ -161,7 +161,7 @@
         <p class="text-sm font-semibold">Client Information</p>
         <hr>
         <div style="opacity: .8; margin-top:1rem;" class="text-xs font-semibold">
-            <p>Client: {{ $customer->FullName ?? '' }}</p>
+            <p>Plate No: {{ $customer->PlateNo ?? '' }}</p>
             <p>COMPANY: {{ $customer->CompanyName ?? '' }}</p>
             <p>CONTACT: {{ $customer->PhoneNumber ?? '' }}</p>
             <p>LOCATION: {{ $customer->OfficeAddress ?? '' }}, {{ $customer->OtherLocation ?? '' }}</p>
