@@ -1,6 +1,26 @@
 @forelse ( $customers as $index => $customer)
-    <tr wire:key='{{ $customer->Customer_uuid }}'>
-        <th>{{ $loop->iteration  }}</th>
+
+    @php
+        $rowClass = '';
+        if ($customer->insurance_expiry_date) {
+            $expiryDate = \Carbon\Carbon::parse($customer->insurance_expiry_date);
+            $today = \Carbon\Carbon::now();
+            $daysUntilExpiry = $today->diffInDays($expiryDate);
+
+            if ($daysUntilExpiry < 0) {
+                // Expired - Red with blinking
+                $rowClass = 'bg-red-100 animate-pulse';
+            } elseif ($daysUntilExpiry <= 60) {
+                // Before 2 months (60 days) - Yellow
+                $rowClass = 'bg-yellow-100';
+            } else {
+                // Not expired - Green
+                $rowClass = 'bg-green-100';
+            }
+        }
+    @endphp
+    <tr wire:key='{{ $customer->Customer_uuid }}' class="{{ $rowClass }}">
+        <th>{{ $loop->iteration }}</th>
         <td>{{ $customer->PlateNo }}</td>
         <td>{{ $customer->PhoneNumber }}</td>
         <td>{{ $customer->CompanyName }}</td>

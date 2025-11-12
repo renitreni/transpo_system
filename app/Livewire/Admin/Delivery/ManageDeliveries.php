@@ -105,7 +105,23 @@ class ManageDeliveries extends Component
     private function getAllCustomers(): LengthAwarePaginator
     {
         $customers = Customer::oldest()
-            ->select('Customer_uuid', 'PlateNo', 'CompanyName', 'MethodPayment', 'OrderDate')
+            ->select(
+                'Customer_uuid',
+                'PlateNo',
+                'PhoneNumber',
+                'CompanyName',
+                'OfficeAddress',
+                'OtherLocation',
+                'OrderDate',
+                'MethodPayment',
+                'driver_name',
+                'car_insurance_company',
+                'resident_iqama_number',
+                'driver_license_number',
+                'driver_license_expiry_date',
+                'insurance_expiry_date',
+                'driver_status'
+            )
             ->where('PlateNo', 'like', "%{$this->search}%")
             ->orWhere('CompanyName', 'like', "%{$this->search}%")
             ->paginate(6);
