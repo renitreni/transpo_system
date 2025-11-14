@@ -51,10 +51,8 @@ class ManageDeliveries extends Component
         }, $customer->PlateNo.' Receipt.pdf');
     }
 
-    public function viewPurchase(?string $customer_uuid = null)
+    public function viewPurchase($customer_uuid = null)
     {
-        $this->js('openViewPurchase()');
-
         $customer = Customer::where('Customer_uuid', $customer_uuid)->first();
         $orders = Order::where('Customer_id', $customer->id)->get();
 
@@ -62,6 +60,8 @@ class ManageDeliveries extends Component
             'customer' => $customer,
             'orders' => $orders,
         ];
+
+        $this->dispatch('open-view-purchase');
     }
 
     public function edit(?string $customer_uuid = null)
@@ -72,9 +72,11 @@ class ManageDeliveries extends Component
 
     public function cancelView(): array
     {
-        $this->js('closeViewPurchase()');
+        $this->data = [];
+        
+        $this->dispatch('close-view-purchase');
 
-        return $this->data = [];
+        return $this->data;
     }
 
     public function delete(?string $customer_uuid = null)

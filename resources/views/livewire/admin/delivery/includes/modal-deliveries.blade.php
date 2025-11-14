@@ -67,10 +67,19 @@
                             <th>{{ $order->WarrantyExpiration }}</th>
                             <td>
                                 @php
-                                    $expiration = new DateTime($order->WarrantyExpiration);
+                                    try {
+                                        $expiration = $order->WarrantyExpiration
+                                            ? new DateTime($order->WarrantyExpiration)
+                                            : null;
+                                    } catch (\Exception $e) {
+                                        $expiration = null;
+                                    }
+
                                     $now = new DateTime();
                                 @endphp
-                                @if($now > $expiration)
+                                @if($expiration === null)
+                                    <span class="font-semibold text-gray-500">Unknown</span>
+                                @elseif($now > $expiration)
                                     <span class="font-semibold text-rose-700">Expired</span>
                                 @else
                                     <span class="font-semibold text-blue-700">Valid</span>

@@ -88,9 +88,21 @@
         $('body').find('#modal-delivery').css('opacity', '1').css('visibility', 'visible');
         console.log($('body').find('#modal-delivery'));
     }
+    
     function closeViewPurchase()
     {
         $('body').find('#modal-delivery').css('opacity', '0').css('visibility', 'hidden');
     }
+
+    // Listen for Livewire events
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('open-view-purchase', () => {
+            openViewPurchase();
+        });
+
+        Livewire.on('close-view-purchase', () => {
+            closeViewPurchase();
+        });
+    });
 </script>
 @endpush
