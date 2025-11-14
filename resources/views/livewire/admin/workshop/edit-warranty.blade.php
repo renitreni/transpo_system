@@ -171,7 +171,7 @@
                                 </a>
                             </div>
                         @elseif ($isVideo)
-                            <div wire:key='{{ $file->id }}' class="relative">
+                            <div wire:key='{{ $file['id'] }}' class="relative">
                                 <button wire:confirm='Delete video?' wire:click="deleteFile({{ $file['id'] }})"
                                     type="button"
                                     class="absolute right-0 z-10 -top-3 hover:badge-error badge badge-flat-error">Delete</button>
