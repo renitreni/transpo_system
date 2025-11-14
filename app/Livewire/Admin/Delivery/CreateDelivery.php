@@ -49,11 +49,54 @@ class CreateDelivery extends Component
         $this->OrderDate = Carbon::now()->toDateString();
     }
 
+    protected function rules(): array
+    {
+        return [
+            'products.*.WarrantyPeriod' => 'nullable|integer|min:0',
+        ];
+    }
+
+    public function updated($propertyName)
+    {
+        if (str_contains($propertyName, 'products.') && str_ends_with($propertyName, 'WarrantyPeriod')) {
+            $this->validateOnly($propertyName);
+            $this->sanitizeWarrantyPeriod($propertyName);
+        }
+    }
+
+    protected function sanitizeWarrantyPeriod(string $propertyName): void
+    {
+        [$collection, $index, $field] = explode('.', $propertyName);
+        if ($collection !== 'products' || $field !== 'WarrantyPeriod') {
+            return;
+        }
+
+        if (! isset($this->products[$index][$field])) {
+            return;
+        }
+
+        $value = $this->products[$index][$field];
+        if ($value === null || $value === '') {
+            $this->products[$index][$field] = null;
+
+            return;
+        }
+
+        $this->products[$index][$field] = (int) $value;
+    }
+
     public function getDateViaMonths($index)
     {
-        $months = $this->products[$index]['WarrantyPeriod'];
+        $propertyPath = "products.$index.WarrantyPeriod";
+        $this->validateOnly($propertyPath);
+
+        $months = $this->products[$index]['WarrantyPeriod'] ?? 0;
+        if (! is_numeric($months)) {
+            $months = 0;
+        }
+
         $orderDate = Carbon::parse($this->OrderDate);
-        $expireWarranty = $orderDate->addMonths($months)->toDateString();
+        $expireWarranty = $orderDate->addMonths((int) $months)->toDateString();
         $this->products[$index]['WarrantyExpiration'] = date('F d , Y', strtotime($expireWarranty));
     }
 
@@ -62,8 +105,12 @@ class CreateDelivery extends Component
         $orderDate = Carbon::parse($this->OrderDate);
 
         foreach ($this->products as $index => $product) {
-            $months = $product['WarrantyPeriod'];
-            $expireWarranty = $orderDate->copy()->addMonths($months)->toDateString();
+            $months = $product['WarrantyPeriod'] ?? 0;
+            if (! is_numeric($months)) {
+                $months = 0;
+            }
+
+            $expireWarranty = $orderDate->copy()->addMonths((int) $months)->toDateString();
             $this->products[$index]['WarrantyExpiration'] = date('F d, Y', strtotime($expireWarranty));
         }
     }
@@ -90,6 +137,32 @@ class CreateDelivery extends Component
     {
         unset($this->products[$index]);
         $this->products = array_values($this->products);
+    }
+
+    protected function sanitizeProductData(array $product): array
+    {
+        $sanitized = [];
+        $stringFields = ['Product', 'Color', 'ChassisNumber'];
+        $numericFields = ['YearModel', 'WarrantyPeriod', 'Quantity'];
+
+        foreach ($stringFields as $field) {
+            if (array_key_exists($field, $product) && is_string($product[$field])) {
+                $value = preg_replace('/\s+/', ' ', trim($product[$field]));
+                $sanitized[$field] = strtoupper($value);
+            }
+        }
+
+        foreach ($numericFields as $field) {
+            if (array_key_exists($field, $product)) {
+                $sanitized[$field] = is_numeric($product[$field]) ? (int) $product[$field] : 0;
+            }
+        }
+
+        if (array_key_exists('WarrantyExpiration', $product) && is_string($product['WarrantyExpiration'])) {
+            $sanitized['WarrantyExpiration'] = trim($product['WarrantyExpiration']);
+        }
+
+        return $sanitized;
     }
 
     public function SaveReceipt()
@@ -124,10 +197,7 @@ class CreateDelivery extends Component
             $customer->save();
 
             foreach ($this->products as $product) {
-                $trimmedProduct = array_map('trim', $product);
-                $trimmedProduct = array_map(function ($value) {
-                    return preg_replace('/\s+/', ' ', strtoupper($value));
-                }, $trimmedProduct);
+                $trimmedProduct = $this->sanitizeProductData($product);
                 $order = new Order;
                 $order->Customer_id = $customer->id;
                 $order->Order_Date = $customer->OrderDate;
