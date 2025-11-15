@@ -145,7 +145,7 @@
                                 }
                             @endphp
                             @if ($isMedia && $fileExists)
-                            <a wire:key='{{ $file->id }}' class="flex items-center gap-2"
+                            <a wire:key='{{ $file['id'] }}' class="flex items-center gap-2"
                                 href="{{ asset('storage/uploads/images/'.$file->FileName) }}" download>
                                 @if($isImage)
                                 <img class="rounded w-28 h-28"
@@ -185,7 +185,7 @@
                                 }
                             @endphp
                             @if ($isDocument && $fileExists)
-                            <a wire:key='{{ $file->id }}' class="flex items-center gap-2"
+                            <a wire:key='{{ $file['id'] }}' class="flex items-center gap-2"
                                 href="{{ asset('storage/uploads/files/'.$file->FileName) }}" download>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -361,15 +361,19 @@
             <section class="px-4 pt-2 pb-4 border rounded-lg col-span-full border-black/20">
                 <h1 class="mb-3 text-lg font-bold">Uploaded Files</h1>
                 <div class="flex flex-wrap gap-6">
-                    <div class="{{ $viewData ? " flex flex-col min-w-min ":" skeleton rounded-lg w-[150px]
-                        text-transparent" }}">
+                    <div class="{{ $viewData ? " flex flex-col min-w-min ":" skeleton rounded-lg w-[150px] text-transparent" }}">
                         @isset($viewData->files)
-                        @forelse ($viewData->files as $file )
-                        @if (file_exists(public_path('storage/uploads/supplier/files/'.$file->FileName)))
+                        @forelse ($viewData->files as $file)
+                        @php
+                            $extension = strtolower(pathinfo($file->FileName, PATHINFO_EXTENSION));
+                            $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'bmp'];
+                            $subDirectory = in_array($extension, $imageExtensions, true) ? 'images' : 'files';
+                            $filePath = storage_path("app/public/uploads/{$subDirectory}/{$file->FileName}");
+                        @endphp
+                        @if (file_exists($filePath))
                         <div>
                             <a class="text-sm text-blue-500" download
-                                href="{{ asset('storage/uploads/supplier/files/'. $file->FileName) }}">{{
-                                $file->FileName}}
+                                href="{{ asset('storage/uploads/' . $subDirectory . '/' . $file->FileName) }}">{{ $file->FileName }}
                             </a>
                         </div>
                         @endif

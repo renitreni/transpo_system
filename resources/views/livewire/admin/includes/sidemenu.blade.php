@@ -35,7 +35,7 @@
 
                             <li
                                 class="menu-item {{ request()->routeIs('admin_Dashboard') ? 'bg-blue-500 text-slate-100 hover:bg-blue-700' : '' }}">
-                                <a wire:navigate href="{{ route('admin_Dashboard', ['lang' => 'en']) }}"
+                                <a href="{{ route('admin_Dashboard', ['lang' => 'en']) }}"
                                     class="flex w-full gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -49,7 +49,7 @@
 
                             <li
                                 class="menu-item {{ request()->routeIs('admin_ManageInquiries') ? 'bg-blue-500 text-slate-100 hover:bg-blue-700' : '' }}">
-                                <a wire:navigate href="{{ route('admin_ManageInquiries', ['lang' => 'en']) }}"
+                                <a href="{{ route('admin_ManageInquiries', ['lang' => 'en']) }}"
                                     class="flex w-full gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -62,7 +62,7 @@
 
                             <li
                                 class="menu-item {{ request()->routeIs('admin_ManageInventories') ? 'bg-blue-500 text-slate-100 hover:bg-blue-700' : '' }}">
-                                <a wire:navigate href="{{ route('admin_ManageInventories', ['lang' => 'en']) }}"
+                                <a href="{{ route('admin_ManageInventories', ['lang' => 'en']) }}"
                                     class="flex w-full gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -76,7 +76,7 @@
 
                             <li
                                 class="menu-item {{ request()->routeIs('admin_ManageStocks') ? 'bg-blue-500 text-slate-100 hover:bg-blue-700' : '' }}">
-                                <a wire:navigate
+                                <a
                                     href="{{ route('admin_ManageStocks', ['lang' => 'en', 'type' => 'trucks']) }}"
                                     class="flex w-full gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -92,7 +92,7 @@
 
                             <li
                                 class="menu-item {{ request()->routeIs('admin_ManageDeliveries') || request()->routeIs('admin_CreateReceipt') ? 'bg-blue-500 text-slate-100 hover:bg-blue-700' : '' }}">
-                                <a wire:navigate href="{{ route('admin_ManageDeliveries', ['lang' => 'en']) }}"
+                                <a href="{{ route('admin_ManageDeliveries', ['lang' => 'en']) }}"
                                     class="flex w-full gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -105,7 +105,7 @@
 
                             <li
                                 class="menu-item {{ request()->routeIs('admin_ManageWorkshop') ? 'bg-blue-500 text-slate-100 hover:bg-blue-700' : '' }}">
-                                <a wire:navigate href="{{ route('admin_ManageWorkshop', ['lang' => 'en']) }}"
+                                <a href="{{ route('admin_ManageWorkshop', ['lang' => 'en']) }}"
                                     class="flex w-full gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -118,7 +118,7 @@
 
                             <li
                                 class="menu-item {{ request()->routeIs('admin_ManageWarranty') || request()->routeIs('admin_CreateWarranty') || request()->routeIs('admin_EditWarranty') || request()->routeIs('admin_Approval') || request()->routeIs('admin_EditSupplier') ? 'bg-blue-500 text-slate-100 hover:bg-blue-700' : '' }}">
-                                <a wire:navigate href="{{ route('admin_ManageWarranty', ['lang' => 'en']) }}"
+                                <a href="{{ route('admin_ManageWarranty', ['lang' => 'en']) }}"
                                     class="flex w-full gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -131,7 +131,7 @@
 
                             <li
                                 class="menu-item {{ request()->routeIs('admin_Users') ? 'bg-blue-500 text-slate-100 hover:bg-blue-700' : '' }}">
-                                <a wire:navigate href="{{ route('admin_Users', ['lang' => 'en']) }}"
+                                <a href="{{ route('admin_Users', ['lang' => 'en']) }}"
                                     class="flex w-full gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -142,7 +142,6 @@
                                     <span>{{ __('Users') }}</span>
                                 </a>
                             </li>
-
 
                         </ul>
                     </section>

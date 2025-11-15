@@ -52,23 +52,24 @@
         </div>
     </div>
     <script>
-        const popup = document.getElementById('popupModal');
+        (() => {
+            if (window.showPopup && window.closePopup) {
+                return;
+            }
 
-        function showPopup() {
-            popup.classList.remove('hidden');
-        }
+            const popup = document.getElementById('popupModal');
 
-        function closePopup() {
-            popup.classList.add('hidden');
-        }
+            window.showPopup = () => popup.classList.remove('hidden');
+            window.closePopup = () => popup.classList.add('hidden');
 
-        // // Show the popup every 1 minute
-        // setInterval(() => {
-        //     showPopup();
-        // }, 3000); // 60,000 ms = 1 minute
+            // // Show the popup every 1 minute
+            // setInterval(() => {
+            //     showPopup();
+            // }, 3000); // 60,000 ms = 1 minute
 
-        // // Show popup immediately on first load
-        // showPopup();
+            // // Show popup immediately on first load
+            // showPopup();
+        })();
     </script>
 </body>
 

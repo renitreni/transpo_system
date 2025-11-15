@@ -270,12 +270,6 @@
                             <progress max="100" x-bind:value="progress"></progress>
                         </div>
                     </div>
-                    @if ($file)
-                        <div class="mt-2 text-xs text-green-600">
-                            <span class="font-semibold">File selected:</span>
-                            <div class="ml-2">• {{ $file['FileName'] }}</div>
-                        </div>
-                    @endif
                 </div>
             </div>
             <textarea wire:model='report' required placeholder="Type something..."
