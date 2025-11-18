@@ -35,6 +35,8 @@
                     <th>Driver License Expiry Date</th>
                     <th>Insurance Expiry Date</th>
                     <th>Driver Status</th>
+                    <th>Driver Card / بطاقة السائق</th>
+                    <th>Operating Card / بطاقة التشغيل</th>
                     <th></th>
                 </tr>
             </thead>

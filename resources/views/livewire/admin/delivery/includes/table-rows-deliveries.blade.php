@@ -1,25 +1,53 @@
 @forelse ( $customers as $index => $customer)
 
     @php
-        $rowClass = '';
+        $insuranceCellClass = '';
+        $driverCardCellClass = '';
+        $operatingCardCellClass = '';
+        
+        // Insurance expiry check (original three-color system)
         if ($customer->date_of_insurance_entry) {
             $expiryDate = \Carbon\Carbon::parse($customer->date_of_insurance_entry);
             $today = \Carbon\Carbon::now();
             $daysUntilExpiry = $today->diffInDays($expiryDate);
 
             if ($daysUntilExpiry < 0) {
-                // Expired - Red with blinking
-                $rowClass = 'bg-red-100 animate-pulse';
+                // Expired - Red with glowing
+                $insuranceCellClass = 'bg-red-100 animate-[glow-red_2s_ease-in-out_infinite]';
             } elseif ($daysUntilExpiry <= 60) {
                 // Before 2 months (60 days) - Yellow
-                $rowClass = 'bg-yellow-100';
+                $insuranceCellClass = 'bg-yellow-100';
             } else {
                 // Not expired - Green
-                $rowClass = 'bg-green-100';
+                $insuranceCellClass = 'bg-green-100';
+            }
+        }
+        
+        // Driver's Card expiry check (1 month / 30 days warning)
+        if ($customer->driver_card) {
+            $expiryDate = \Carbon\Carbon::parse($customer->driver_card);
+            $today = \Carbon\Carbon::now();
+            $daysUntilExpiry = $today->diffInDays($expiryDate, false);
+
+            if ($daysUntilExpiry <= 30) {
+                // Within 1 month (30 days) or expired - Red with glowing
+                $driverCardCellClass = 'bg-red-100 animate-[glow-red_2s_ease-in-out_infinite]';
+            }
+        }
+        
+        // Operating Card expiry check (1 month / 30 days warning)
+        if ($customer->operating_card) {
+            $expiryDate = \Carbon\Carbon::parse($customer->operating_card);
+            $today = \Carbon\Carbon::now();
+            $daysUntilExpiry = $today->diffInDays($expiryDate, false);
+
+            if ($daysUntilExpiry <= 30) {
+                // Within 1 month (30 days) or expired - Red with glowing
+                $operatingCardCellClass = 'bg-red-100 animate-[glow-red_2s_ease-in-out_infinite]';
             }
         }
     @endphp
-    <tr wire:key='{{ $customer->Customer_uuid }}' class="{{ $rowClass }}">
+    <tr wire:key='{{ $customer->Customer_uuid }}'>
         <th>{{ $loop->iteration }}</th>
         <td>{{ $customer->PlateNo }}</td>
         <td>{{ $customer->PhoneNumber }}</td>
@@ -32,7 +60,7 @@
         <td>{{ $customer->resident_iqama_number }}</td>
         <td>{{ $customer->driver_license_number }}</td>
         <td>{{ $customer->driver_license_expiry_date ? \Carbon\Carbon::parse($customer->driver_license_expiry_date)->format('M d, Y') : '' }}</td>
-        <td>{{ $customer->insurance_expiry_date ? \Carbon\Carbon::parse($customer->insurance_expiry_date)->format('M d, Y') : '' }}</td>
+        <td class="{{ $insuranceCellClass }}">{{ $customer->insurance_expiry_date ? \Carbon\Carbon::parse($customer->insurance_expiry_date)->format('M d, Y') : '' }}</td>
         <td>
             @if ($customer->driver_status)
                 <span class="badge badge-{{ $customer->driver_status === 'active' ? 'success' : ($customer->driver_status === 'inactive' ? 'error' : 'warning') }}">
@@ -40,6 +68,8 @@
                 </span>
             @endif
         </td>
+        <td class="{{ $driverCardCellClass }}">{{ $customer->driver_card ? \Carbon\Carbon::parse($customer->driver_card)->format('M d, Y') : '' }}</td>
+        <td class="{{ $operatingCardCellClass }}">{{ $customer->operating_card ? \Carbon\Carbon::parse($customer->operating_card)->format('M d, Y') : '' }}</td>
         <td>
             <div class="dropdown ">
                 <label class="p-0 mx-2 bg-transparent cursor-pointer btn" tabindex="0">
@@ -53,6 +83,6 @@
     </tr>
 @empty
     <tr>
-        <td colspan="15">No Clients</td>
+        <td colspan="17">No Clients</td>
     </tr>
 @endforelse
