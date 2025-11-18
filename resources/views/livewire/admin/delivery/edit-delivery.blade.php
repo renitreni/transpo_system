@@ -111,6 +111,24 @@
                     @error('driver_status') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">Driver Card / بطاقة السائق</label>
+                    <input wire:model='driver_card' autocomplete="off" type="date"
+                        class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('driver_card')
+                        <span class="text-xs text-rose-600">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <label class="text-sm">Operating Card / بطاقة التشغيل</label>
+                    <input wire:model='operating_card' autocomplete="off" type="date"
+                        class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('operating_card')
+                        <span class="text-xs text-rose-600">{{ $message }}</span>
+                    @enderror
+                </div>
+
 
                 {{-- <div class="flex flex-col justify-center">
                     <label class="text-sm">Postcode</label>

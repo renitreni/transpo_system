@@ -35,6 +35,8 @@ class EditDelivery extends Component
     public $insurance_expiry_date;
     public $date_of_insurance_entry;
     public $driver_status;
+    public $driver_card;
+    public $operating_card;
 
     public $customer_id;
 
@@ -59,6 +61,8 @@ class EditDelivery extends Component
         $this->insurance_expiry_date = $customer->insurance_expiry_date;
         $this->date_of_insurance_entry = $customer->date_of_insurance_entry;
         $this->driver_status = $customer->driver_status;
+        $this->driver_card = $customer->driver_card;
+        $this->operating_card = $customer->operating_card;
 
         foreach ($orders as $order) {
             $this->products[] = [
@@ -210,6 +214,8 @@ class EditDelivery extends Component
                 'insurance_expiry_date' => $this->insurance_expiry_date ?? null,
                 'date_of_insurance_entry' => $this->date_of_insurance_entry ?? null,
                 'driver_status' => $this->driver_status ?? null,
+                'driver_card' => $this->driver_card ?? null,
+                'operating_card' => $this->operating_card ?? null,
             ];
 
             $customer = Customer::find($this->customer_id);
