@@ -6,8 +6,8 @@
         $operatingCardCellClass = '';
         
         // Insurance expiry check (original three-color system)
-        if ($customer->date_of_insurance_entry) {
-            $expiryDate = \Carbon\Carbon::parse($customer->date_of_insurance_entry);
+        if ($customer->insurance_expiry_date) {
+            $expiryDate = \Carbon\Carbon::parse($customer->insurance_expiry_date);
             $today = \Carbon\Carbon::now();
             $daysUntilExpiry = $today->diffInDays($expiryDate);
 
