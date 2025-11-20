@@ -13,13 +13,13 @@
 
             if ($daysUntilExpiry < 0) {
                 // Expired - Red with glowing
-                $insuranceCellClass = 'bg-red-100 animate-[glow-red_2s_ease-in-out_infinite]';
+                $insuranceCellClass = 'bg-red-400 animate-[glow-red_2s_ease-in-out_infinite]';
             } elseif ($daysUntilExpiry <= 60) {
                 // Before 2 months (60 days) - Yellow
-                $insuranceCellClass = 'bg-yellow-100';
+                $insuranceCellClass = 'bg-yellow-400';
             } else {
                 // Not expired - Green
-                $insuranceCellClass = 'bg-green-100';
+                $insuranceCellClass = 'bg-green-400 animate-[glow-green_2s_ease-in-out_infinite]';
             }
         }
         
