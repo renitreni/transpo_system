@@ -74,19 +74,51 @@
                     @enderror
                 </div>
 
-                <div class="flex flex-col justify-center">
-                    <label class="text-sm">Date of Insurance Entry / تاريخ دخول التأمين</label>
-                    <input wire:model='date_of_insurance_entry' autocomplete="off" type="date" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                <div class="flex flex-col justify-center col-span-2" x-data="{
+                    startDate: @entangle('date_of_insurance_entry').live,
+                    endDate: @entangle('insurance_expiry_date').live,
+                    showPicker: false
+                }">
+                    <label class="text-sm">Insurance Date Range / نطاق تاريخ التأمين</label>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            readonly
+                            x-on:click="showPicker = !showPicker"
+                            :value="startDate && endDate ? startDate + ' to ' + endDate : (startDate || endDate ? (startDate || endDate) : '')"
+                            placeholder="Select date range"
+                            class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400 cursor-pointer"
+                        >
+                        <div x-show="showPicker"
+                             x-on:click.away="showPicker = false"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="opacity-100 scale-100"
+                             x-transition:leave-end="opacity-0 scale-95"
+                             class="absolute z-50 mt-1 bg-white border border-black/30 rounded-md shadow-lg p-3 grid grid-cols-2 gap-2 w-full max-w-[500px] left-0">
+                            <div>
+                                <label class="text-xs text-gray-600">Start Date / تاريخ البداية</label>
+                                <input
+                                    type="date"
+                                    x-model="startDate"
+                                    class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
+                                >
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-600">End Date / تاريخ النهاية</label>
+                                <input
+                                    type="date"
+                                    x-model="endDate"
+                                    :min="startDate || ''"
+                                    class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
+                                >
+                            </div>
+                        </div>
+                    </div>
                     @error('date_of_insurance_entry') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
-                </div>
-
-                <div class="flex flex-col justify-center">
-                    <label class="text-sm">Insurance Expiry Date / تاريخ انتهاء التأمين</label>
-                    <input wire:model='insurance_expiry_date' autocomplete="off" type="date"
-                        class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('insurance_expiry_date')
-                        <span class="text-xs text-rose-600">{{ $message }}</span>
-                    @enderror
+                    @error('insurance_expiry_date') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
                 <div class="flex flex-col justify-center">
@@ -116,22 +148,51 @@
                     @enderror
                 </div>
 
-                <div class="flex flex-col justify-center">
-                    <label class="text-sm">Date of Entry Iqama Number / تاريخ دخول رقم الإقامة</label>
-                    <input wire:model='date_of_entry_iqama_number' autocomplete="off" type="date"
-                        class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('date_of_entry_iqama_number')
-                        <span class="text-xs text-rose-600">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="flex flex-col justify-center">
-                    <label class="text-sm">Validity of Iqama / صلاحية الإقامة</label>
-                    <input wire:model='validity_of_iqama' autocomplete="off" type="date"
-                        class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('validity_of_iqama')
-                        <span class="text-xs text-rose-600">{{ $message }}</span>
-                    @enderror
+                <div class="flex flex-col justify-center col-span-2" x-data="{
+                    startDate: @entangle('date_of_entry_iqama_number').live,
+                    endDate: @entangle('validity_of_iqama').live,
+                    showPicker: false
+                }">
+                    <label class="text-sm">Iqama Date Range / نطاق تاريخ الإقامة</label>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            readonly
+                            x-on:click="showPicker = !showPicker"
+                            :value="startDate && endDate ? startDate + ' to ' + endDate : (startDate || endDate ? (startDate || endDate) : '')"
+                            placeholder="Select date range"
+                            class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400 cursor-pointer"
+                        >
+                        <div x-show="showPicker"
+                             x-on:click.away="showPicker = false"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="opacity-100 scale-100"
+                             x-transition:leave-end="opacity-0 scale-95"
+                             class="absolute z-50 mt-1 bg-white border border-black/30 rounded-md shadow-lg p-3 grid grid-cols-2 gap-2 w-full max-w-[500px] left-0">
+                            <div>
+                                <label class="text-xs text-gray-600">Start Date / تاريخ البداية</label>
+                                <input
+                                    type="date"
+                                    x-model="startDate"
+                                    class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
+                                >
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-600">End Date / تاريخ النهاية</label>
+                                <input
+                                    type="date"
+                                    x-model="endDate"
+                                    :min="startDate || ''"
+                                    class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    @error('date_of_entry_iqama_number') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                    @error('validity_of_iqama') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
                 <div class="flex flex-col justify-center">
@@ -167,12 +228,6 @@
                 </div>
 
 
-                {{-- <div class="flex flex-col justify-center">
-                    <label class="text-sm">Postcode</label>
-                    <input wire:model='PostCode' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('PostCode') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
-                </div> --}}
-
             </div>
         </div>
 
@@ -192,17 +247,6 @@
                 @error('OrderDate')
                     <span class="text-xs text-rose-600">{{ $message }}</span>
                 @enderror
-
-                {{-- <div class="mt-2">
-                    <label  class="text-sm">S</label>
-                    <select wire:model.defer='OrderStatus' class="text-sm rounded-md select select-ghost-primary">
-                        <option value="Bank" @if ($OrderStatus == false) selected @endif>Bank</option>
-                        <option value="Cash" @if ($OrderStatus == true) selected @endif>Cash</option>
-                    </select>
-                </div>
-                @error('OrderStatus') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror --}}
-
-
 
             </div>
         </div>
@@ -281,12 +325,6 @@
                                     onclick="this.type ='date'" onblur="this.type='text'" type="text"
                                     class="w-full p-1.5 text-sm bg-transparent rounded-md border-black/30 focus:outline-blue-400">
                             </td>
-                            {{-- <td>
-                            <div class="relative">
-                                <span class="absolute top-1.5 left-2">SAR</span>
-                                <input wire:input.live.debounce.1000ms='updateSubTotal({{ $index }})' wire:model='products.{{ $index }}.Price' type="number" min="0" class="w-full py-1 pl-10 rounded-md focus:outline-blue-400">
-                            </div>
-                        </td> --}}
                         </tr>
                     @empty
                         <tr>
@@ -305,40 +343,6 @@
                 </tbody>
             </table>
         </div>
-
-        {{-- <div class="col-start-3 col-span-full">
-            <div class="flex justify-between">
-                <label class="block pb-2 text-sm font-medium text-gray-700 border-b-2"> Computation </label>
-            </div>
-            <div class="grid grid-cols-1 gap-1 mt-4 text-sm">
-                <div class="flex items-center justify-between">
-                    <label >Subtotal</label>
-                    <label>SAR {{ $OrderSubtotal }}</label>
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <label>Tax</label>
-                    <div class="relative">
-                        <span class="absolute top-1.5 left-2">SAR</span>
-                        <input wire:input.live.debounce.1000ms='updateTotal()' wire:model='OrderTax' type="number" min="0" class="py-1 pl-10 rounded-sm w-36 focus:outline-sky-700">
-                    </div>
-                </div>
-
-
-                <div class="flex items-center justify-between">
-                    <label>Shipping Fee</label>
-                    <div class="relative">
-                        <span class="absolute top-1.5 left-2">SAR</span>
-                        <input wire:input.live.debounce.1000ms='updateTotal()' wire:model='OrderShippingFee' type="number" min="0" class="py-1 pl-10 rounded-sm w-36 focus:outline-sky-700">
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between pt-1 mt-2 border-t-2">
-                    <label>Total</label>
-                    <label>SAR {{ $OrderTotal }}</label>
-                </div>
-            </div>
-        </div> --}}
 
         <div class="flex justify-end gap-3 col-span-full">
             <button type="button"

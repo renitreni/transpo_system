@@ -60,7 +60,24 @@
         <td>{{ $customer->resident_iqama_number }}</td>
         <td>{{ $customer->driver_license_number }}</td>
         <td>{{ $customer->driver_license_expiry_date ? \Carbon\Carbon::parse($customer->driver_license_expiry_date)->format('M d, Y') : '' }}</td>
-        <td class="{{ $insuranceCellClass }}">{{ $customer->insurance_expiry_date ? \Carbon\Carbon::parse($customer->insurance_expiry_date)->format('M d, Y') : '' }}</td>
+        <td class="{{ $insuranceCellClass }}">
+            @if($customer->date_of_insurance_entry && $customer->insurance_expiry_date)
+                {{ \Carbon\Carbon::parse($customer->date_of_insurance_entry)->format('M d, Y') }} - {{ \Carbon\Carbon::parse($customer->insurance_expiry_date)->format('M d, Y') }}
+            @elseif($customer->insurance_expiry_date)
+                {{ \Carbon\Carbon::parse($customer->insurance_expiry_date)->format('M d, Y') }}
+            @elseif($customer->date_of_insurance_entry)
+                {{ \Carbon\Carbon::parse($customer->date_of_insurance_entry)->format('M d, Y') }}
+            @endif
+        </td>
+        <td>
+            @if($customer->date_of_entry_iqama_number && $customer->validity_of_iqama)
+                {{ \Carbon\Carbon::parse($customer->date_of_entry_iqama_number)->format('M d, Y') }} - {{ \Carbon\Carbon::parse($customer->validity_of_iqama)->format('M d, Y') }}
+            @elseif($customer->validity_of_iqama)
+                {{ \Carbon\Carbon::parse($customer->validity_of_iqama)->format('M d, Y') }}
+            @elseif($customer->date_of_entry_iqama_number)
+                {{ \Carbon\Carbon::parse($customer->date_of_entry_iqama_number)->format('M d, Y') }}
+            @endif
+        </td>
         <td>
             @if ($customer->driver_status)
                 <span class="badge badge-{{ $customer->driver_status === 'active' ? 'success' : ($customer->driver_status === 'inactive' ? 'error' : 'warning') }}">
@@ -83,6 +100,6 @@
     </tr>
 @empty
     <tr>
-        <td colspan="17">No Clients</td>
+        <td colspan="18">No Clients</td>
     </tr>
 @endforelse

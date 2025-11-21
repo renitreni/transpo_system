@@ -33,7 +33,8 @@
                     <th>Resident Iqama Number</th>
                     <th>Driver License Number</th>
                     <th>Driver License Expiry Date</th>
-                    <th>Insurance Expiry Date</th>
+                    <th>Insurance Date Range</th>
+                    <th>Iqama Date Range</th>
                     <th>Driver Status</th>
                     <th>Driver Card / بطاقة السائق</th>
                     <th>Operating Card / بطاقة التشغيل</th>
@@ -90,7 +91,7 @@
         $('body').find('#modal-delivery').css('opacity', '1').css('visibility', 'visible');
         console.log($('body').find('#modal-delivery'));
     }
-    
+
     function closeViewPurchase()
     {
         $('body').find('#modal-delivery').css('opacity', '0').css('visibility', 'hidden');
