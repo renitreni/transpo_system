@@ -94,6 +94,7 @@
                                 <input
                                     type="date"
                                     x-model="startDate"
+                                    :tabindex="showPicker ? 0 : -1"
                                     class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
                                 >
                             </div>
@@ -102,7 +103,8 @@
                                 <input
                                     type="date"
                                     x-model="endDate"
-                                    :min="startDate || ''"
+                                    x-bind:min="showPicker && startDate ? startDate : undefined"
+                                    :tabindex="showPicker ? 0 : -1"
                                     class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
                                 >
                             </div>
@@ -191,6 +193,7 @@
                                 <input
                                     type="date"
                                     x-model="startDate"
+                                    :tabindex="showPicker ? 0 : -1"
                                     class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
                                 >
                             </div>
@@ -199,7 +202,8 @@
                                 <input
                                     type="date"
                                     x-model="endDate"
-                                    :min="startDate || ''"
+                                    x-bind:min="showPicker && startDate ? startDate : undefined"
+                                    :tabindex="showPicker ? 0 : -1"
                                     class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
                                 >
                             </div>
@@ -238,6 +242,7 @@
                                 <input
                                     type="date"
                                     x-model="startDate"
+                                    :tabindex="showPicker ? 0 : -1"
                                     class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
                                 >
                             </div>
@@ -246,7 +251,8 @@
                                 <input
                                     type="date"
                                     x-model="endDate"
-                                    :min="startDate || ''"
+                                    x-bind:min="showPicker && startDate ? startDate : undefined"
+                                    :tabindex="showPicker ? 0 : -1"
                                     class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
                                 >
                             </div>
@@ -285,6 +291,7 @@
                                 <input
                                     type="date"
                                     x-model="startDate"
+                                    :tabindex="showPicker ? 0 : -1"
                                     class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
                                 >
                             </div>
@@ -293,7 +300,8 @@
                                 <input
                                     type="date"
                                     x-model="endDate"
-                                    :min="startDate || ''"
+                                    x-bind:min="showPicker && startDate ? startDate : undefined"
+                                    :tabindex="showPicker ? 0 : -1"
                                     class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
                                 >
                             </div>

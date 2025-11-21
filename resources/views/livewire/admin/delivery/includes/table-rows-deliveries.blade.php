@@ -9,7 +9,7 @@
         if ($customer->insurance_expiry_date) {
             $expiryDate = \Carbon\Carbon::parse($customer->insurance_expiry_date);
             $today = \Carbon\Carbon::now();
-            $daysUntilExpiry = $today->diffInDays($expiryDate);
+            $daysUntilExpiry = $today->diffInDays($expiryDate, false);
 
             if ($daysUntilExpiry < 0) {
                 // Expired - Red with glowing
@@ -23,27 +23,27 @@
             }
         }
         
-        // Driver's Card expiry check (1 month / 30 days warning)
+        // Driver's Card expiry check - Red one month (30 days) before expiry date
         if ($customer->driver_card) {
             $expiryDate = \Carbon\Carbon::parse($customer->driver_card);
             $today = \Carbon\Carbon::now();
             $daysUntilExpiry = $today->diffInDays($expiryDate, false);
 
+            // Red when 30 days or less until expiry (one month before)
             if ($daysUntilExpiry <= 30) {
-                // Within 1 month (30 days) or expired - Red with glowing
-                $driverCardCellClass = 'bg-red-100 animate-[glow-red_2s_ease-in-out_infinite]';
+                $driverCardCellClass = 'bg-red-400 animate-[glow-red_2s_ease-in-out_infinite]';
             }
         }
         
-        // Operating Card expiry check (1 month / 30 days warning)
+        // Operating Card expiry check - Red one month (30 days) before expiry date
         if ($customer->operating_card) {
             $expiryDate = \Carbon\Carbon::parse($customer->operating_card);
             $today = \Carbon\Carbon::now();
             $daysUntilExpiry = $today->diffInDays($expiryDate, false);
 
+            // Red when 30 days or less until expiry (one month before)
             if ($daysUntilExpiry <= 30) {
-                // Within 1 month (30 days) or expired - Red with glowing
-                $operatingCardCellClass = 'bg-red-100 animate-[glow-red_2s_ease-in-out_infinite]';
+                $operatingCardCellClass = 'bg-red-400 animate-[glow-red_2s_ease-in-out_infinite]';
             }
         }
     @endphp
