@@ -91,13 +91,25 @@ class ManageDeliveries extends Component
         $customers = Customer::with('orders')
             ->where(function ($query) {
                 $query->where('PlateNo', 'like', "%{$this->search}%")
+                    ->orWhere('PhoneNumber', 'like', "%{$this->search}%")
+                    ->orWhere('CompanyName', 'like', "%{$this->search}%")
+                    ->orWhere('OfficeAddress', 'like', "%{$this->search}%")
+                    ->orWhere('OtherLocation', 'like', "%{$this->search}%")
+                    ->orWhere('driver_name', 'like', "%{$this->search}%")
+                    ->orWhere('car_insurance_company', 'like', "%{$this->search}%")
+                    ->orWhere('resident_iqama_number', 'like', "%{$this->search}%")
+                    ->orWhere('driver_license_number', 'like', "%{$this->search}%")
+                    ->orWhere('driver_status', 'like', "%{$this->search}%")
+                    ->orWhere('driver_license_expiry_date', 'like', "%{$this->search}%")
+                    ->orWhere('insurance_expiry_date', 'like', "%{$this->search}%")
+                    ->orWhere('driver_card', 'like', "%{$this->search}%")
+                    ->orWhere('operating_card', 'like', "%{$this->search}%")
+                    ->orWhere('OrderDate', 'like', "%{$this->search}%")
                     ->orWhereHas('orders', function ($orderQuery) {
                         $orderQuery->where('Product', 'like', "%{$this->search}%")
                             ->orWhere('Color', 'like', "%{$this->search}%")
                             ->orWhere('ChassisNumber', 'like', "%{$this->search}%")
-                            ->orWhere('CompanyName', 'like', "%{$this->search}%")
                             ->orWhere('WarrantyExpiration', 'like', "%{$this->search}%");
-                        // Add more conditions as needed for order fields
                     });
             })->get();
 
@@ -123,10 +135,27 @@ class ManageDeliveries extends Component
                 'driver_license_number',
                 'driver_license_expiry_date',
                 'insurance_expiry_date',
-                'driver_status'
+                'driver_status',
+                'driver_card',
+                'operating_card'
             )
-            ->where('PlateNo', 'like', "%{$this->search}%")
-            ->orWhere('CompanyName', 'like', "%{$this->search}%")
+            ->where(function ($query) {
+                $query->where('PlateNo', 'like', "%{$this->search}%")
+                    ->orWhere('PhoneNumber', 'like', "%{$this->search}%")
+                    ->orWhere('CompanyName', 'like', "%{$this->search}%")
+                    ->orWhere('OfficeAddress', 'like', "%{$this->search}%")
+                    ->orWhere('OtherLocation', 'like', "%{$this->search}%")
+                    ->orWhere('driver_name', 'like', "%{$this->search}%")
+                    ->orWhere('car_insurance_company', 'like', "%{$this->search}%")
+                    ->orWhere('resident_iqama_number', 'like', "%{$this->search}%")
+                    ->orWhere('driver_license_number', 'like', "%{$this->search}%")
+                    ->orWhere('driver_status', 'like', "%{$this->search}%")
+                    ->orWhere('driver_license_expiry_date', 'like', "%{$this->search}%")
+                    ->orWhere('insurance_expiry_date', 'like', "%{$this->search}%")
+                    ->orWhere('driver_card', 'like', "%{$this->search}%")
+                    ->orWhere('operating_card', 'like', "%{$this->search}%")
+                    ->orWhere('OrderDate', 'like', "%{$this->search}%");
+            })
             ->paginate(6);
 
         return $customers;
