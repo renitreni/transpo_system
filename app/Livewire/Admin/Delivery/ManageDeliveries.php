@@ -103,7 +103,9 @@ class ManageDeliveries extends Component
                     ->orWhere('driver_license_expiry_date', 'like', "%{$this->search}%")
                     ->orWhere('insurance_expiry_date', 'like', "%{$this->search}%")
                     ->orWhere('driver_card', 'like', "%{$this->search}%")
+                    ->orWhere('driver_card_entry_date', 'like', "%{$this->search}%")
                     ->orWhere('operating_card', 'like', "%{$this->search}%")
+                    ->orWhere('operating_card_entry_date', 'like', "%{$this->search}%")
                     ->orWhere('OrderDate', 'like', "%{$this->search}%")
                     ->orWhereHas('orders', function ($orderQuery) {
                         $orderQuery->where('Product', 'like', "%{$this->search}%")
@@ -132,12 +134,16 @@ class ManageDeliveries extends Component
                 'driver_name',
                 'car_insurance_company',
                 'resident_iqama_number',
+                'date_of_entry_iqama_number',
+                'validity_of_iqama',
                 'driver_license_number',
                 'driver_license_expiry_date',
                 'insurance_expiry_date',
                 'driver_status',
                 'driver_card',
-                'operating_card'
+                'driver_card_entry_date',
+                'operating_card',
+                'operating_card_entry_date'
             )
             ->where(function ($query) {
                 $query->where('PlateNo', 'like', "%{$this->search}%")
@@ -153,7 +159,9 @@ class ManageDeliveries extends Component
                     ->orWhere('driver_license_expiry_date', 'like', "%{$this->search}%")
                     ->orWhere('insurance_expiry_date', 'like', "%{$this->search}%")
                     ->orWhere('driver_card', 'like', "%{$this->search}%")
+                    ->orWhere('driver_card_entry_date', 'like', "%{$this->search}%")
                     ->orWhere('operating_card', 'like', "%{$this->search}%")
+                    ->orWhere('operating_card_entry_date', 'like', "%{$this->search}%")
                     ->orWhere('OrderDate', 'like', "%{$this->search}%");
             })
             ->paginate(6);

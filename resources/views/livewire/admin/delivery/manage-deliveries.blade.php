@@ -36,8 +36,8 @@
                     <th>Insurance Date Range</th>
                     <th>Iqama Date Range</th>
                     <th>Driver Status</th>
-                    <th>Driver Card / بطاقة السائق</th>
-                    <th>Operating Card / بطاقة التشغيل</th>
+                    <th>Driver Card Date Range</th>
+                    <th>Operating Card Date Range</th>
                     <th></th>
                 </tr>
             </thead>
@@ -54,11 +54,6 @@
                 <tr>
                     <th>Plate No / رقم اللوحة</th>
                     <th>Company</th>
-                    {{-- <th>Payment</th>
-                    <th>Product</th>
-                    <th>Color</th>
-                    <th>Quantity</th>
-                    <th>Purchased Date</th> --}}
                     <th>Chassis Number</th>
                     <th>Warranty Expiration</th>
                     <th></th>

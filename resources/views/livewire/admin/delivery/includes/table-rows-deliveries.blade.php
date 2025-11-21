@@ -85,8 +85,24 @@
                 </span>
             @endif
         </td>
-        <td class="{{ $driverCardCellClass }}">{{ $customer->driver_card ? \Carbon\Carbon::parse($customer->driver_card)->format('M d, Y') : '' }}</td>
-        <td class="{{ $operatingCardCellClass }}">{{ $customer->operating_card ? \Carbon\Carbon::parse($customer->operating_card)->format('M d, Y') : '' }}</td>
+        <td class="{{ $driverCardCellClass }}">
+            @if($customer->driver_card_entry_date && $customer->driver_card)
+                {{ \Carbon\Carbon::parse($customer->driver_card_entry_date)->format('M d, Y') }} - {{ \Carbon\Carbon::parse($customer->driver_card)->format('M d, Y') }}
+            @elseif($customer->driver_card)
+                {{ \Carbon\Carbon::parse($customer->driver_card)->format('M d, Y') }}
+            @elseif($customer->driver_card_entry_date)
+                {{ \Carbon\Carbon::parse($customer->driver_card_entry_date)->format('M d, Y') }}
+            @endif
+        </td>
+        <td class="{{ $operatingCardCellClass }}">
+            @if($customer->operating_card_entry_date && $customer->operating_card)
+                {{ \Carbon\Carbon::parse($customer->operating_card_entry_date)->format('M d, Y') }} - {{ \Carbon\Carbon::parse($customer->operating_card)->format('M d, Y') }}
+            @elseif($customer->operating_card)
+                {{ \Carbon\Carbon::parse($customer->operating_card)->format('M d, Y') }}
+            @elseif($customer->operating_card_entry_date)
+                {{ \Carbon\Carbon::parse($customer->operating_card_entry_date)->format('M d, Y') }}
+            @endif
+        </td>
         <td>
             <div class="dropdown ">
                 <label class="p-0 mx-2 bg-transparent cursor-pointer btn" tabindex="0">

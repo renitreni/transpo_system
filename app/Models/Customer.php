@@ -34,7 +34,9 @@ class Customer extends Model
         'date_of_insurance_entry',
         'driver_status',
         'driver_card',
+        'driver_card_entry_date',
         'operating_card',
+        'operating_card_entry_date',
     ];
 
     public function orders(): HasMany

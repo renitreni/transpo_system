@@ -40,18 +40,11 @@
                     @error('OtherLocation') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
-                <div class="flex flex-col justify-center">
-                    <label class="text-sm">Driver Name / اسم السائق</label>
-                    <input wire:model='driver_name' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('driver_name') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
-                </div>
-
-                <div class="flex flex-col justify-center">
+                <div class="flex flex-col justify-center col-span-2">
                     <label class="text-sm">Car Insurance Company / شركة تأمين السيارات</label>
                     <input wire:model='car_insurance_company' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
                     @error('car_insurance_company') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
-
 
                 <div class="flex flex-col justify-center col-span-2" x-data="{
                     startDate: @entangle('date_of_insurance_entry').live,
@@ -101,6 +94,12 @@
                 </div>
 
                 <div class="flex flex-col justify-center">
+                    <label class="text-sm">Driver Name / اسم السائق</label>
+                    <input wire:model='driver_name' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                    @error('driver_name') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="flex flex-col justify-center">
                     <label class="text-sm">Driver License Number / رقم رخصة القيادة</label>
                     <input wire:model='driver_license_number' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
                     @error('driver_license_number') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
@@ -113,6 +112,17 @@
                 </div>
 
                 <div class="flex flex-col justify-center">
+                    <label class="text-sm">Driver Status / حالة السائق</label>
+                    <select wire:model='driver_status' class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
+                        <option value="">-- Select Status / اختر الحالة --</option>
+                        @foreach($driverStatusOptions as $status)
+                            <option value="{{ $status->value }}">{{ $status->value }}</option>
+                        @endforeach
+                    </select>
+                    @error('driver_status') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="flex flex-col justify-center col-span-2">
                     <label class="text-sm">Resident/Iqama Number / رقم المقيم أو رقم الإقامة</label>
                     <input wire:model='resident_iqama_number' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
                     @error('resident_iqama_number') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
@@ -165,41 +175,99 @@
                     @error('validity_of_iqama') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
-                <div class="flex flex-col justify-center">
-                    <label class="text-sm">Driver Status / حالة السائق</label>
-                    <select wire:model='driver_status' class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                        <option value="">-- Select Status / اختر الحالة --</option>
-                        @foreach($driverStatusOptions as $status)
-                            <option value="{{ $status->value }}">{{ $status->value }}</option>
-                        @endforeach
-                    </select>
-                    @error('driver_status') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                <div class="flex flex-col justify-center col-span-2" x-data="{
+                    startDate: @entangle('driver_card_entry_date').live,
+                    endDate: @entangle('driver_card').live,
+                    showPicker: false
+                }">
+                    <label class="text-sm">Driver Card Date Range / نطاق تاريخ بطاقة السائق</label>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            readonly
+                            x-on:click="showPicker = !showPicker"
+                            :value="startDate && endDate ? startDate + ' to ' + endDate : (startDate || endDate ? (startDate || endDate) : '')"
+                            placeholder="Select date range"
+                            class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400 cursor-pointer"
+                        >
+                        <div x-show="showPicker"
+                             x-on:click.away="showPicker = false"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="opacity-100 scale-100"
+                             x-transition:leave-end="opacity-0 scale-95"
+                             class="absolute z-50 mt-1 bg-white border border-black/30 rounded-md shadow-lg p-3 grid grid-cols-2 gap-2 w-full max-w-[500px] left-0">
+                            <div>
+                                <label class="text-xs text-gray-600">Start Date / تاريخ البداية</label>
+                                <input
+                                    type="date"
+                                    x-model="startDate"
+                                    class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
+                                >
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-600">End Date / تاريخ النهاية</label>
+                                <input
+                                    type="date"
+                                    x-model="endDate"
+                                    :min="startDate || ''"
+                                    class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    @error('driver_card_entry_date') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                    @error('driver_card') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
 
-                <div class="flex flex-col justify-center">
-                    <label class="text-sm">Driver Card / بطاقة السائق</label>
-                    <input wire:model='driver_card' autocomplete="off" type="date"
-                        class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('driver_card')
-                        <span class="text-xs text-rose-600">{{ $message }}</span>
-                    @enderror
+                <div class="flex flex-col justify-center col-span-2" x-data="{
+                    startDate: @entangle('operating_card_entry_date').live,
+                    endDate: @entangle('operating_card').live,
+                    showPicker: false
+                }">
+                    <label class="text-sm">Operating Card Date Range / نطاق تاريخ بطاقة التشغيل</label>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            readonly
+                            x-on:click="showPicker = !showPicker"
+                            :value="startDate && endDate ? startDate + ' to ' + endDate : (startDate || endDate ? (startDate || endDate) : '')"
+                            placeholder="Select date range"
+                            class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400 cursor-pointer"
+                        >
+                        <div x-show="showPicker"
+                             x-on:click.away="showPicker = false"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="opacity-100 scale-100"
+                             x-transition:leave-end="opacity-0 scale-95"
+                             class="absolute z-50 mt-1 bg-white border border-black/30 rounded-md shadow-lg p-3 grid grid-cols-2 gap-2 w-full max-w-[500px] left-0">
+                            <div>
+                                <label class="text-xs text-gray-600">Start Date / تاريخ البداية</label>
+                                <input
+                                    type="date"
+                                    x-model="startDate"
+                                    class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
+                                >
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-600">End Date / تاريخ النهاية</label>
+                                <input
+                                    type="date"
+                                    x-model="endDate"
+                                    :min="startDate || ''"
+                                    class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    @error('operating_card_entry_date') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
+                    @error('operating_card') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
                 </div>
-
-                <div class="flex flex-col justify-center">
-                    <label class="text-sm">Operating Card / بطاقة التشغيل</label>
-                    <input wire:model='operating_card' autocomplete="off" type="date"
-                        class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('operating_card')
-                        <span class="text-xs text-rose-600">{{ $message }}</span>
-                    @enderror
-                </div>
-
-
-                {{-- <div class="flex flex-col justify-center">
-                    <label class="text-sm">Postcode</label>
-                    <input wire:model='PostCode' autocomplete="off" type="text" class="w-full p-1 bg-transparent border rounded-md border-black/30 focus:outline-blue-400">
-                    @error('PostCode') <span class="text-xs text-rose-600">{{ $message }}</span>@enderror
-                </div> --}}
 
             </div>
         </div>

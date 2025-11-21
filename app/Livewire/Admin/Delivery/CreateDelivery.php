@@ -37,7 +37,9 @@ class CreateDelivery extends Component
     public $date_of_insurance_entry;
     public $driver_status;
     public $driver_card;
+    public $driver_card_entry_date;
     public $operating_card;
+    public $operating_card_entry_date;
     //public int $OrderSubtotal = 0;
     ////#[Rule('required')]
     //public int $OrderShippingFee = 0;
@@ -193,7 +195,9 @@ class CreateDelivery extends Component
                 'date_of_insurance_entry' => $this->date_of_insurance_entry ?? null,
                 'driver_status' => $this->driver_status ?? null,
                 'driver_card' => $this->driver_card ?? null,
+                'driver_card_entry_date' => $this->driver_card_entry_date ?? null,
                 'operating_card' => $this->operating_card ?? null,
+                'operating_card_entry_date' => $this->operating_card_entry_date ?? null,
             ];
 
             $customer = new Customer;
