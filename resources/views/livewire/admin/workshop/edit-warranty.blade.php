@@ -53,7 +53,7 @@
                         <select wire:model='brand' class="{{ $selectStyle }} {{ $inputStyle }}">
                             <option selected value="">Select</option>
                             <option @if ($brand == 'CAMAC') selected @endif value="CAMAC">CAMAC</option>
-                            <option @if ($brand == 'ENSIGN') selected @endif value="ENSIGN">ENSIGN</option>
+                            <option @if ($brand == 'FAW') selected @endif value="FAW">FAW</option>
                             <option @if ($brand == 'alesnaad') selected @endif value="alesnaad">
                                 alesnaad</option>
                         </select>
@@ -103,7 +103,7 @@
                     <label>Approve By</label>
                     <select wire:model='approvedBy' class="{{ $selectStyle }} {{ $inputStyle }}">
                         <option selected value="">Select</option>
-                        <option @if ($approvedBy == 'ENSIGN') selected @endif value="ENSIGN">ENSIGN</option>
+                        <option @if ($approvedBy == 'FAW') selected @endif value="FAW">FAW</option>
                         <option @if ($approvedBy == 'CAMAC') selected @endif value="CAMAC">CAMAC</option>
                         {{-- <option @if ($approvedBy == 'alesnaad') selected @endif value="alesnaad">alesnaad</option> --}}
                     </select>
@@ -124,8 +124,8 @@
                     <div
                         class="flex items-center justify-between p-2.5 border border-black/10 bg-white rounded-md shadow">
                         <span>{{ $status ? 'Working' : 'Need Repair' }}</span>
-                        <input @if ($status) checked @endif wire:model.live='status'
-                            type="checkbox" class="border-black/30 switch switch-ghost-primary" />
+                        <input @if ($status) checked @endif wire:model.live='status' type="checkbox"
+                            class="border-black/30 switch switch-ghost-primary" />
                     </div>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                         $isImage = in_array($extension, $imageExtensions);
                         $isVideo = in_array($extension, $videoExtensions);
                         $isMedia = $isImage || $isVideo;
-                        
+
                         // Check in images directory for media files
                         if ($isMedia) {
                             $filePath = storage_path('app/public/uploads/images/' . $file['FileName']);
@@ -155,7 +155,7 @@
                         }
                         $fileExists = file_exists($filePath);
                     @endphp
-                    
+
                     @if ($isMedia && $fileExists)
                         @php $hasImages = true; @endphp
                         @if ($isImage)
@@ -198,7 +198,7 @@
                     @php
                         $extension = strtolower(pathinfo($file['FileName'], PATHINFO_EXTENSION));
                         $isDocument = in_array($extension, $documentExtensions);
-                        
+
                         // Check in files directory for documents
                         if ($isDocument) {
                             $filePath = storage_path('app/public/uploads/files/' . $file['FileName']);
@@ -207,10 +207,10 @@
                             $fileExists = false;
                         }
                     @endphp
-                    
+
                     @if ($isDocument && $fileExists)
                         @php $hasDocuments = true; @endphp
-                        <div wire:key='{{ $file['id']}}' class="relative">
+                        <div wire:key='{{ $file['id'] }}' class="relative">
                             <button wire:confirm='Delete file?' wire:click="deleteFile({{ $file['id'] }})"
                                 type="button"
                                 class="absolute right-0 z-10 -top-5 hover:badge-error badge badge-flat-error">Delete</button>
@@ -263,9 +263,8 @@
                         x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false"
                         x-on:livewire-upload-progress="progress = $event.detail.progress">
 
-                        <input wire:model='file' accept=".pdf,.doc,.docx,.txt" type="file"
-                            class="input-file" /> 
-                            <!-- Progress Bar -->
+                        <input wire:model='file' accept=".pdf,.doc,.docx,.txt" type="file" class="input-file" />
+                        <!-- Progress Bar -->
                         <div x-show="uploading" class="mt-2">
                             <progress max="100" x-bind:value="progress"></progress>
                         </div>

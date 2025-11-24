@@ -24,23 +24,24 @@
             </thead>
 
             <tbody class="divide-y divide-gray-200">
-                @forelse ($reports as $report )
-                <tr>
-                    <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
-                    <td class="px-4 py-2 text-gray-700 uppercase whitespace-wrap">{{ $report->description }}
-                    </td>
-                    <td class="px-4 py-2 text-gray-700 uppercase whitespace-nowrap">{{ $report->vin }}</td>
-                    <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ date('F d, Y',
-                        strtotime($report->date_services)) }}</td>
-                    <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $report->labor_cost}} USD</td>
-                    <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $report->total_price}} USD</td>
-                    <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $report->remarks ?? "----"}}</td>
-                </tr>
+                @forelse ($reports as $report)
+                    <tr>
+                        <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
+                        <td class="px-4 py-2 text-gray-700 uppercase whitespace-wrap">{{ $report->description }}
+                        </td>
+                        <td class="px-4 py-2 text-gray-700 uppercase whitespace-nowrap">{{ $report->vin }}</td>
+                        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+                            {{ date('F d, Y', strtotime($report->date_services)) }}</td>
+                        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $report->labor_cost }} USD</td>
+                        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $report->total_price }} USD</td>
+                        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $report->remarks ?? '----' }}</td>
+                    </tr>
                 @empty
-                <tr>
-                    <td colspan="12" class="px-4 py-2 font-medium text-gray-900 col-span-full whitespace-nowrap">No
-                        report has been added.</td>
-                </tr>
+                    <tr>
+                        <td colspan="12" class="px-4 py-2 font-medium text-gray-900 col-span-full whitespace-nowrap">
+                            No
+                            report has been added.</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
@@ -61,7 +62,9 @@
 
                     <input list="company_list" wire:model='company_name' type="text" id="company_name" placeholder=""
                         class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
-                    @error('company_name') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    @error('company_name')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
 
                     <datalist id="company_list">
                         <option value="alesnaad"></option>
@@ -71,12 +74,14 @@
                 <div>
                     <label for="supplier_name" class="block text-xs font-medium text-gray-700"> Supplier Name </label>
 
-                    <input list="supplier_list" wire:model='supplier_name' type="text" id="supplier_name" placeholder=""
-                        class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
-                    @error('supplier_name') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    <input list="supplier_list" wire:model='supplier_name' type="text" id="supplier_name"
+                        placeholder="" class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
+                    @error('supplier_name')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
 
                     <datalist id="supplier_list">
-                        <option value="CAMC"></option>
+                        <option value="OTHER"></option>
                     </datalist>
                 </div>
                 <div class="col-span-2">
@@ -84,7 +89,9 @@
 
                     <input wire:model='description' type="text" id="description" placeholder=""
                         class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
-                    @error('description') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    @error('description')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div>
@@ -92,7 +99,9 @@
 
                     <input wire:model='vin' type="text" id="vin" placeholder=""
                         class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
-                    @error('vin') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    @error('vin')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div>
@@ -100,16 +109,20 @@
 
                     <input wire:model='date_services' type="date" id="date_services" placeholder=""
                         class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
-                    @error('date_services') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    @error('date_services')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
 
                 </div>
 
                 <div>
                     <label for="labor_cost" class="block text-xs font-medium text-gray-700"> Labor Cost (USD) </label>
 
-                    <input wire:model='labor_cost' step="0.01" type="number" min="0" id="labor_cost" placeholder=""
-                        class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
-                    @error('labor_cost') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    <input wire:model='labor_cost' step="0.01" type="number" min="0" id="labor_cost"
+                        placeholder="" class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
+                    @error('labor_cost')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
 
                 </div>
 
@@ -117,9 +130,11 @@
                 <div>
                     <label for="total_price" class="block text-xs font-medium text-gray-700"> Total Price (USD) </label>
 
-                    <input wire:model='total_price' step="0.01" type="number" min="0" id="total_price" placeholder=""
-                        class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
-                    @error('total_price') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    <input wire:model='total_price' step="0.01" type="number" min="0" id="total_price"
+                        placeholder="" class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
+                    @error('total_price')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
 
                 </div>
 
@@ -128,7 +143,9 @@
 
                     <input wire:model='remarks' type="text" id="remarks" placeholder=""
                         class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm" />
-                    @error('remarks') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    @error('remarks')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
 
                 </div>
 
@@ -151,15 +168,17 @@
                     <select wire:model='selectedCompany' class="border rounded border-black/10">
                         <option value="null" selected>List of companies</option>
                         @isset($company_select)
-                        @forelse ($company_select->unique('company_name') as $index => $company )
-                        <option wire:key='{{ $index }}' value="{{ $company->company_name }}">{{ $company->company_name
-                            }}</option>
-                        @empty
-                        <option value="null" disabled>Empty list</option>
-                        @endforelse
+                            @forelse ($company_select->unique('company_name') as $index => $company)
+                                <option wire:key='{{ $index }}' value="{{ $company->company_name }}">
+                                    {{ $company->company_name }}</option>
+                            @empty
+                                <option value="null" disabled>Empty list</option>
+                            @endforelse
                         @endisset
                     </select>
-                    @error('selectedCompany') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    @error('selectedCompany')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div class="flex flex-col mt-3">
@@ -167,15 +186,17 @@
                     <select wire:model='selectedSupplier' class="border rounded border-black/10">
                         <option value="null" selected>List of suppliers</option>
                         @isset($supplier_select)
-                        @forelse ($supplier_select->unique('supplier_name') as $index => $supplier )
-                        <option wire:key='{{ $index }}' value="{{ $supplier->supplier_name }}">{{ $supplier->supplier_name
-                            }}</option>
-                        @empty
-                        <option value="null" disabled>Empty list</option>
-                        @endforelse
+                            @forelse ($supplier_select->unique('supplier_name') as $index => $supplier)
+                                <option wire:key='{{ $index }}' value="{{ $supplier->supplier_name }}">
+                                    {{ $supplier->supplier_name }}</option>
+                            @empty
+                                <option value="null" disabled>Empty list</option>
+                            @endforelse
                         @endisset
                     </select>
-                    @error('selectedSupplier') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    @error('selectedSupplier')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
 
                 </div>
 
@@ -184,15 +205,17 @@
                     <select wire:model='selectedYear' class="border rounded border-black/10">
                         <option value="null" selected>List of years</option>
                         @isset($year_select)
-                        @forelse ($year_select as $index => $year )
-                        <option wire:key='{{ $index }}' value="{{ $year->year }}">{{ $year->year
-                            }}</option>
-                        @empty
-                        <option value="null" disabled>Empty list</option>
-                        @endforelse
+                            @forelse ($year_select as $index => $year)
+                                <option wire:key='{{ $index }}' value="{{ $year->year }}">{{ $year->year }}
+                                </option>
+                            @empty
+                                <option value="null" disabled>Empty list</option>
+                            @endforelse
                         @endisset
                     </select>
-                    @error('selectedYear') <small class="text-rose-600">{{ $message }}</small> @enderror
+                    @error('selectedYear')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
 
                 </div>
 

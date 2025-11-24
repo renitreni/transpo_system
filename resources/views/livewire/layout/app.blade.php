@@ -25,8 +25,8 @@
         @auth
             @if (Auth::user()->role === 'Mechanic')
                 {{ $slot }}
-            @elseif(Auth::user()->role === 'Ensign' ||
-                    Auth::user()->role === 'Camc' ||
+            @elseif(Auth::user()->role === 'FAW' ||
+                    Auth::user()->role === 'OTHER' ||
                     Auth::user()->role === 'Accountant' ||
                     Auth::user()->role === 'Sales' ||
                     Auth::user()->role === 'Fleet')
@@ -45,7 +45,8 @@
     <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white p-6 rounded-xl shadow-lg max-w-sm w-full text-center">
             <h2 class="text-xl font-bold mb-4">Notice</h2>
-            <p class="text-gray-600 mb-6">Reminder: Your payment is overdue. Please settle immediately to avoid service interruption.</p>
+            <p class="text-gray-600 mb-6">Reminder: Your payment is overdue. Please settle immediately to avoid service
+                interruption.</p>
             <button onclick="closePopup()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
                 Cancel
             </button>

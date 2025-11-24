@@ -28,7 +28,7 @@ class WheelLoaderComponent extends Component
 
     public string $Warehouse = 'WAREHOUSE RIYADH';
 
-    public string $Stocks = 'ENSIGN';
+    public string $Stocks = 'FAW';
 
     public string $Type = 'WHEEL LOADER';
 

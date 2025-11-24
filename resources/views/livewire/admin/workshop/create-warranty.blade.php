@@ -52,8 +52,8 @@
                         <label>Brand</label>
                         <select wire:model='form.Brand' class="{{ $selectStyle }} {{ $inputStyle }}">
                             <option selected value="">Select</option>
-                            <option value="ENSIGN">ENSIGN</option>
-                            <option value="CAMC">CAMC</option>
+                            <option value="FAW">FAW</option>
+                            <option value="OTHER">OTHER</option>
                             <option value="alesnaad">alesnaad</option>
                         </select>
                     </div>
@@ -104,8 +104,8 @@
                     <label>Approve By</label>
                     <select wire:model='form.ApprovedBy' class="{{ $selectStyle }} {{ $inputStyle }}">
                         <option selected value="">Select</option>
-                        <option value="ENSIGN">ENSIGN</option>
-                        <option value="CAMC">CAMC</option>
+                        <option value="FAW">FAW</option>
+                        <option value="OTHER">OTHER</option>
                         {{-- <option value="alesnaad">alesnaad</option> --}}
                     </select>
                 </div>
@@ -139,8 +139,8 @@
                 <div class="flex flex-col flex-1">
                     <label>Upload Images</label>
                     <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true"
-                        x-on:livewire-upload-finish="uploading = false"
-                        x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false"
+                        x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false"
+                        x-on:livewire-upload-error="uploading = false"
                         x-on:livewire-upload-progress="progress = $event.detail.progress">
                         <input wire:model='form.Images' accept="image/*,video/*" type="file" multiple
                             class="input-file" />
@@ -164,7 +164,8 @@
                         x-on:livewire-upload-finish="uploading = false"
                         x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false"
                         x-on:livewire-upload-progress="progress = $event.detail.progress">
-                        <input wire:model='form.File' accept=".pdf,.doc,.docx,.txt" type="file" class="input-file" />
+                        <input wire:model='form.File' accept=".pdf,.doc,.docx,.txt" type="file"
+                            class="input-file" />
                         <!-- Progress Bar -->
                         <div x-show="uploading" class="mt-2">
                             <progress max="100" x-bind:value="progress"></progress>

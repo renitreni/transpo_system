@@ -53,16 +53,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'Ensign',
-            'email' => 'ensign1@alesnaad.online',
-            'role' => 'Ensign',
+            'name' => 'FAW',
+            'email' => 'FAW1@alesnaad.online',
+            'role' => 'FAW',
             'password' => Hash::make('password'),
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'Camc',
-            'email' => 'camc1@alesnaad.online',
-            'role' => 'Camc',
+            'name' => 'OTHER',
+            'email' => 'OTHER1@alesnaad.online',
+            'role' => 'OTHER',
             'password' => Hash::make('password'),
         ]);
 

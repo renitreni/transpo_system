@@ -13,8 +13,8 @@
             <select wire:model.lazy='form.truck_brand' required id="truck_brand"
                 class="w-full border-gray-300 rounded-md shadow-sm focus:border-teal-950 focus:ring-teal-950">
                 <option selected value="">Select Brand</option>
-                <option value="CAMC">Camc</option>
-                <option value="ENSIGN">Ensign</option>
+                <option value="OTHER">OTHER</option>
+                <option value="FAW">FAW</option>
             </select>
         </div>
 

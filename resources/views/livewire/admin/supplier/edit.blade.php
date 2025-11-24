@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between gap-2 mb-3">
         <div class="inline-flex items-center gap-2">
             <button type="button"
-                onclick="window.location.href='{{ route('admin_EditWarranty',['lang'=>'en','warranty_id'=>$report_id]) }}'"
+                onclick="window.location.href='{{ route('admin_EditWarranty', ['lang' => 'en', 'warranty_id' => $report_id]) }}'"
                 class="gap-2 text-white bg-blue-400 hover:bg-blue-600 btn btn-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">
@@ -14,8 +14,8 @@
             <h1 class="text-lg font-medium">{{ __('Approval Form') }}</h1>
         </div>
         <button type="button"
-            onclick="window.location.href='{{ route('admin_EditSupplier',['lang'=>'ar','id'=>$report_id]) }}'"
-            class="gap-2 {{ $lang == "ar" ? "hidden" :"btn" }} hover:bg-blue-600 text-white bg-blue-400 btn-sm">
+            onclick="window.location.href='{{ route('admin_EditSupplier', ['lang' => 'ar', 'id' => $report_id]) }}'"
+            class="gap-2 {{ $lang == 'ar' ? 'hidden' : 'btn' }} hover:bg-blue-600 text-white bg-blue-400 btn-sm">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -25,8 +25,8 @@
         </button>
 
         <button type="button"
-            onclick="window.location.href='{{ route('admin_EditSupplier',['lang'=>'en','id'=>$report_id]) }}'"
-            class="gap-2 {{ $lang == "ar" ? "btn" :"hidden" }} hover:bg-blue-600 text-white bg-blue-400 btn-sm">
+            onclick="window.location.href='{{ route('admin_EditSupplier', ['lang' => 'en', 'id' => $report_id]) }}'"
+            class="gap-2 {{ $lang == 'ar' ? 'btn' : 'hidden' }} hover:bg-blue-600 text-white bg-blue-400 btn-sm">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -37,7 +37,7 @@
     </div>
 
     <div class="flex flex-wrap items-center justify-between gap-4 mt-4 text-xs">
-        <span>Annex I Technical Service Information Sheet ENSIGN </span>
+        <span>Annex I Technical Service Information Sheet FAW </span>
         <span>No.: </span>
         <span>Dealer No.: </span>
         <span class="w-[300px]">Compensation Claim No.: </span>
@@ -152,32 +152,31 @@
     <div class="grid grid-cols-1 gap-2 p-5 mt-5 border rounded md:grid-cols-2 border-black/10">
         <div class="flex flex-col">
             <label class="text-sm">{{ __('Failure Description') }}</label>
-            <textarea wire:model='FailureDescription' class="border rounded focus:ring-0 border-black/10"
-                rows="4"></textarea>
+            <textarea wire:model='FailureDescription' class="border rounded focus:ring-0 border-black/10" rows="4"></textarea>
         </div>
         <div class="flex flex-col">
             <label class="text-sm">{{ __('Cause Analysis') }}</label>
-            <textarea wire:model='CausesAnalysis' class="border rounded focus:ring-0 border-black/10"
-                rows="4"></textarea>
+            <textarea wire:model='CausesAnalysis' class="border rounded focus:ring-0 border-black/10" rows="4"></textarea>
         </div>
         <div class="flex flex-col">
             <label class="text-sm">{{ __('Upload Files') }}</label>
-            <input wire:model='Files' multiple class="w-full p-1 border rounded-md shadow border-black/20" type="file">
+            <input wire:model='Files' multiple class="w-full p-1 border rounded-md shadow border-black/20"
+                type="file">
             <small wire:loading wire:target='Files' class="text-yellow-500">Uploading: Please wait...</small>
             <div class="flex flex-col gap-1 mt-3">
                 <label class="text-sm">{{ __('Uploaded Files') }}</label>
-                @forelse ($allFiles as $file )
-                @if (file_exists(public_path('storage/uploads/supplier/files/'.$file->FileName)))
-                <div>
-                    <button type="button" wire:click='deleteFile({{ $file->id }})'
-                        class="badge badge-error">Delete</button>
-                    <a class="text-sm text-blue-500" download
-                        href="{{ asset('storage/uploads/supplier/files/'. $file->FileName) }}">{{ $file->FileName}}
-                    </a>
-                </div>
-                @endif
+                @forelse ($allFiles as $file)
+                    @if (file_exists(public_path('storage/uploads/supplier/files/' . $file->FileName)))
+                        <div>
+                            <button type="button" wire:click='deleteFile({{ $file->id }})'
+                                class="badge badge-error">Delete</button>
+                            <a class="text-sm text-blue-500" download
+                                href="{{ asset('storage/uploads/supplier/files/' . $file->FileName) }}">{{ $file->FileName }}
+                            </a>
+                        </div>
+                    @endif
                 @empty
-                <span class="text-rose-500">No Files Uploaded</span>
+                    <span class="text-rose-500">No Files Uploaded</span>
                 @endforelse
             </div>
         </div>
@@ -188,7 +187,7 @@
             <label class="text-base font-bold">{{ __('Handling Result') }}</label>
             <div class="flex flex-wrap gap-2 mt-2">
                 <div class="w-full">
-                    <div class="{{ $techSig ? 'hidden':'flex flex-col w-full' }} ">
+                    <div class="{{ $techSig ? 'hidden' : 'flex flex-col w-full' }} ">
                         <label class="text-sm">{{ __('Upload Signature of Service Technician') }}</label>
                         <input wire:model='SignatureTech' class="w-full p-1 border rounded-md shadow border-black/20"
                             type="file">
@@ -196,16 +195,16 @@
                             wait...
                         </small>
                     </div>
-                    <div class="{{ $techSig ? 'flex flex-col w-full':'hidden' }} ">
+                    <div class="{{ $techSig ? 'flex flex-col w-full' : 'hidden' }} ">
                         <label class="text-sm">{{ __('Uploaded Signature of Service Technician') }}</label>
-                        @if (file_exists(public_path('storage/uploads/supplier/'.$techSig)))
-                        <div>
-                            <button wire:click='deleteSignatures("SignatureTech","{{ $techSig }}")' type="button" class="badge badge-error">Delete</button>
-                            <a class="text-sm text-blue-500 max-w-[250px]" download
-                                href="{{ asset('storage/uploads/supplier/'. $techSig) }}">{{
-                                $techSig}}
-                            </a>
-                        </div>
+                        @if (file_exists(public_path('storage/uploads/supplier/' . $techSig)))
+                            <div>
+                                <button wire:click='deleteSignatures("SignatureTech","{{ $techSig }}")'
+                                    type="button" class="badge badge-error">Delete</button>
+                                <a class="text-sm text-blue-500 max-w-[250px]" download
+                                    href="{{ asset('storage/uploads/supplier/' . $techSig) }}">{{ $techSig }}
+                                </a>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -220,24 +219,24 @@
             <label class="text-base font-bold">{{ __('Customer') }}</label>
             <div class="flex flex-wrap gap-2 mt-2">
                 <div class="w-full">
-                    <div class="{{ $custSig ? 'hidden':'flex flex-col' }} ">
+                    <div class="{{ $custSig ? 'hidden' : 'flex flex-col' }} ">
                         <label class="text-sm">{{ __('Upload Signature of Customer') }}</label>
-                        <input wire:model='SignatureCustomer' class="w-full p-1 border rounded-md shadow border-black/20"
-                            type="file">
+                        <input wire:model='SignatureCustomer'
+                            class="w-full p-1 border rounded-md shadow border-black/20" type="file">
                         <small wire:loading wire:target='SignatureCustomer' class="text-yellow-500">Uploading: Please
                             wait...
                         </small>
                     </div>
-                    <div class="{{ $custSig ? 'flex flex-col w-full':'hidden' }} ">
+                    <div class="{{ $custSig ? 'flex flex-col w-full' : 'hidden' }} ">
                         <label class="text-sm">{{ __('Uploaded Signature of Customer') }}</label>
-                        @if (file_exists(public_path('storage/uploads/supplier/'.$custSig)))
-                        <div>
-                            <button wire:click='deleteSignatures("SignatureCustomer","{{ $custSig }}")' type="button" class="badge badge-error">Delete</button>
-                            <a class="text-sm text-blue-500 max-w-[250px]" download
-                                href="{{ asset('storage/uploads/supplier/'. $custSig) }}">{{
-                                $custSig}}
-                            </a>
-                        </div>
+                        @if (file_exists(public_path('storage/uploads/supplier/' . $custSig)))
+                            <div>
+                                <button wire:click='deleteSignatures("SignatureCustomer","{{ $custSig }}")'
+                                    type="button" class="badge badge-error">Delete</button>
+                                <a class="text-sm text-blue-500 max-w-[250px]" download
+                                    href="{{ asset('storage/uploads/supplier/' . $custSig) }}">{{ $custSig }}
+                                </a>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -295,29 +294,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($replacements as $index => $row )
-                    <tr>
-                        <th>
-                            <input wire:model='replacements.{{ $index }}.FPCN'
-                                class="p-1.5 border rounded-md shadow border-black/20" type="text">
-                        </th>
-                        <td>
-                            <input wire:model='replacements.{{ $index }}.RPCN'
-                                class="p-1.5 border rounded-md shadow border-black/20" type="text">
-                        </td>
-                        <td>
-                            <input wire:model='replacements.{{ $index }}.NameModel'
-                                class="p-1.5 border rounded-md shadow border-black/20" type="text">
-                        </td>
-                        <td>
-                            <input wire:model='replacements.{{ $index }}.Quantity'
-                                class="p-1.5 w-[120px] border rounded-md shadow border-black/20" type="text">
-                        </td>
-                    </tr>
+                    @forelse ($replacements as $index => $row)
+                        <tr>
+                            <th>
+                                <input wire:model='replacements.{{ $index }}.FPCN'
+                                    class="p-1.5 border rounded-md shadow border-black/20" type="text">
+                            </th>
+                            <td>
+                                <input wire:model='replacements.{{ $index }}.RPCN'
+                                    class="p-1.5 border rounded-md shadow border-black/20" type="text">
+                            </td>
+                            <td>
+                                <input wire:model='replacements.{{ $index }}.NameModel'
+                                    class="p-1.5 border rounded-md shadow border-black/20" type="text">
+                            </td>
+                            <td>
+                                <input wire:model='replacements.{{ $index }}.Quantity'
+                                    class="p-1.5 w-[120px] border rounded-md shadow border-black/20" type="text">
+                            </td>
+                        </tr>
                     @empty
-                    <tr>
-                        <td>No rows</td>
-                    </tr>
+                        <tr>
+                            <td>No rows</td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
@@ -332,7 +331,8 @@
         </div>
         <div class="flex flex-col">
             <label class="text-sm">{{ __('Dealer Request Approval') }}</label>
-            <input wire:model='DealerRequestApproval' class="p-2 border rounded-md shadow border-black/20" type="text">
+            <input wire:model='DealerRequestApproval' class="p-2 border rounded-md shadow border-black/20"
+                type="text">
         </div>
         <div class="flex flex-col">
             <label class="text-sm">{{ __('Date') }}</label>
@@ -342,23 +342,23 @@
     </div>
 
     <div class="grid grid-cols-1 gap-2 p-5 mt-5 border rounded md:grid-cols-2 border-black/10">
-        <div class=" {{ $approvalSig ? "hidden":"flex flex-col" }} ">
+        <div class=" {{ $approvalSig ? 'hidden' : 'flex flex-col' }} ">
             <label class="text-sm">{{ __('Upload Signature') }}</label>
             <input wire:model='ApprovalSignature' class="w-full p-1 border rounded-md shadow border-black/20"
                 type="file">
             <small wire:loading wire:target='ApprovalSignature' class="text-yellow-500">Uploading: Please
                 wait...</small>
         </div>
-        <div class="{{ $approvalSig ? 'flex flex-col':'hidden' }} ">
+        <div class="{{ $approvalSig ? 'flex flex-col' : 'hidden' }} ">
             <label class="text-sm">{{ __('Uploaded Signature') }}</label>
-            @if (file_exists(public_path('storage/uploads/supplier/'.$approvalSig)))
-            <div>
-                <button wire:click='deleteSignatures("ApprovalSignature","{{ $approvalSig }}")' type="button" class="badge badge-error">Delete</button>
-                <a class="text-sm text-blue-500 max-w-[250px]" download
-                    href="{{ asset('storage/uploads/supplier/'. $approvalSig) }}">{{
-                    $approvalSig}}
-                </a>
-            </div>
+            @if (file_exists(public_path('storage/uploads/supplier/' . $approvalSig)))
+                <div>
+                    <button wire:click='deleteSignatures("ApprovalSignature","{{ $approvalSig }}")' type="button"
+                        class="badge badge-error">Delete</button>
+                    <a class="text-sm text-blue-500 max-w-[250px]" download
+                        href="{{ asset('storage/uploads/supplier/' . $approvalSig) }}">{{ $approvalSig }}
+                    </a>
+                </div>
             @endif
         </div>
         <div class="flex flex-col">

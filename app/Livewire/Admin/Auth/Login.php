@@ -47,13 +47,13 @@ class Login extends Component
                 if (Auth::user()->role === 'Mechanic') {
                     return redirect('admin/en@workshop');
                 }
-                if (Auth::user()->role === 'Ensign' || Auth::user()->role === 'Camc') {
+                if (Auth::user()->role === 'FAW' || Auth::user()->role === 'OTHER') {
                     return redirect('admin/en@supplier');
                 }
                 if (Auth::user()->role === 'Accountant' || Auth::user()->role === 'Sales' || Auth::user()->role === 'Fleet') {
                     return redirect()->route('admin_Renting', ['lang' => 'en']);
                 }
-                \App\Models\Log::newLog('Login', Auth::user()->name.' logged in');
+                \App\Models\Log::newLog('Login', Auth::user()->name . ' logged in');
 
                 return redirect('admin/en@dashboard');
             } else {

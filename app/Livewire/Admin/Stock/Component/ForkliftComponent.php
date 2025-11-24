@@ -34,7 +34,7 @@ class ForkliftComponent extends Component
 
     public string $Warehouse = 'WAREHOUSE RIYADH';
 
-    public string $Stocks = 'ENSIGN';
+    public string $Stocks = 'FAW';
 
     public string $Type = 'DUPLEX MAST';
 
