@@ -267,6 +267,26 @@ class EditWarranty extends Component
     }
 
     /**
+     * Get the next kilometer for Change Oil (current odometer + 9500)
+     *
+     * @return int|null
+     */
+    public function getNextKilometerProperty(): ?int
+    {
+        if (empty($this->odometer)) {
+            return null;
+        }
+
+        $value = (int) $this->odometer;
+        
+        if ($value <= 0) {
+            return null;
+        }
+
+        return $value + 9500;
+    }
+
+    /**
      * Render the component
      */
     public function render(): View

@@ -61,6 +61,26 @@ class CreateWarranty extends Component
         ]), navigate: true);
     }
 
+    /**
+     * Get the next kilometer for Change Oil (current odometer + 9500)
+     *
+     * @return int|null
+     */
+    public function getNextKilometerProperty(): ?int
+    {
+        if (empty($this->form->Odometer)) {
+            return null;
+        }
+
+        $value = (int) $this->form->Odometer;
+        
+        if ($value <= 0) {
+            return null;
+        }
+
+        return $value + 9500;
+    }
+
     public function render()
     {
         return view('livewire.admin.workshop.create-warranty');

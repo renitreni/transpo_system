@@ -89,7 +89,15 @@
 
                     <div class="{{ $inputContainerStyle }} ">
                         <label>Kilometers</label>
-                        <input wire:model='odometer' required class="{{ $inputStyle }}" type="number">
+                        <input wire:model.live='odometer'
+                               required
+                               class="{{ $inputStyle }}"
+                               type="number">
+                        @if($this->nextKilometer)
+                            <small class="text-xs text-gray-500 mt-1">
+                                Next Kilometer for Change Oil: {{ number_format($this->nextKilometer) }}
+                            </small>
+                        @endif
                     </div>
                 </div>
             </div>
