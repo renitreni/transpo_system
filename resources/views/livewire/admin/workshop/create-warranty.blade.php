@@ -65,32 +65,9 @@
                         <label>Body Type</label>
                         <select wire:model='form.BodyType' class="{{ $selectStyle }} {{ $inputStyle }}">
                             <option selected value="">Select</option>
-                            <option value="General Cargo">General Cargo</option>
-                            <option value="Dry van / Box truck">Dry van / Box truck</option>
-                            <option value="Curtainsider">Curtainsider</option>
-                            <option value="Dropside">Dropside</option>
-                            <option value="Wing van">Wing van</option>
-                            <option value="Flatbed">Flatbed</option>
-                            <option value="Temperature Controlled">Temperature Controlled</option>
-                            <option value="Reefer truck (Freezer)">Reefer truck (Freezer)</option>
-                            <option value="Chiller truck">Chiller truck</option>
-                            <option value="Insulated van">Insulated van</option>
-                            <option value="Construction / Heavy">Construction / Heavy</option>
-                            <option value="Tipper / Dump truck">Tipper / Dump truck</option>
-                            <option value="Mixer truck">Mixer truck</option>
-                            <option value="Lowbed trailer">Lowbed trailer</option>
-                            <option value="Flatbed with crane">Flatbed with crane</option>
-                            <option value="Hook lift / Roll-off container truck">Hook lift / Roll-off container truck
-                            </option>
-                            <option value="Tanker (fuel, water, chemicals)">Tanker (fuel, water, chemicals)</option>
-                            <option value="Car carrier">Car carrier</option>
-                            <option value="Livestock truck">Livestock truck</option>
-                            <option value="Garbage compactor">Garbage compactor</option>
-                            <option value="Vacuum truck">Vacuum truck</option>
-                            <option value="Bulk carrier (cement, grain)">Bulk carrier (cement, grain)</option>
-                            <option value="Log carrier">Log carrier</option>
-                            <option value="Ambulance truck body">Ambulance truck body</option>
-                            <option value="Fire truck body">Fire truck body</option>
+                            @foreach (\App\Enums\TruckBodyTypeEnum::cases() as $case)
+                                <option value="{{ $case->value }}">{{ $case->value }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -175,8 +152,8 @@
                 <div class="flex flex-col flex-1">
                     <label>Upload Images</label>
                     <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true"
-                        x-on:livewire-upload-finish="uploading = false"
-                        x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false"
+                        x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false"
+                        x-on:livewire-upload-error="uploading = false"
                         x-on:livewire-upload-progress="progress = $event.detail.progress">
                         <input wire:model='form.Images' accept="image/*,video/*" type="file" multiple
                             class="input-file" />
