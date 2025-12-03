@@ -101,11 +101,9 @@
                     </div>
 
                     <div class="{{ $inputContainerStyle }} ">
-                        <label>Hours</label>
-                        <input wire:model='form.Hours' required class="{{ $inputStyle }}" type="number">
+                        <label>First Time Maintenance</label>
+                        <input wire:model='form.FirstTimeMaintenance' required class="{{ $inputStyle }}" type="date">
                     </div>
-
-
                 </div>
 
                 <div class="flex gap-2 grow">

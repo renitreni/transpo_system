@@ -54,7 +54,7 @@ class EditWarranty extends Component
     public $bodyType = '';
     public $vinId = '';
     public $odometer = '';
-    public $hours = '';
+    public $firstTimeMaintenance = '';
     public $plateNumber = '';
     public $color = '';
     public $approvedBy = '';
@@ -141,7 +141,7 @@ class EditWarranty extends Component
         $this->bodyType = $report->BodyType ?? '';
         $this->vinId = $report->VIN_ID;
         $this->odometer = $report->Odometer;
-        $this->hours = $report->Hours;
+        $this->firstTimeMaintenance = $report->FirstTimeMaintenance ?? '';
         $this->plateNumber = $report->PlateNumber;
         $this->color = $report->Color;
         $this->approvedBy = $report->ApprovedBy;
@@ -200,7 +200,7 @@ class EditWarranty extends Component
         $report->BodyType = $this->bodyType;
         $report->VIN_ID = strtoupper($this->vinId);
         $report->Odometer = strtoupper($this->odometer);
-        $report->Hours = strtoupper($this->hours);
+        $report->FirstTimeMaintenance = $this->firstTimeMaintenance;
         $report->PlateNumber = strtoupper($this->plateNumber);
         $report->Color = strtoupper($this->color);
         $report->ApprovedBy = strtoupper($this->approvedBy);

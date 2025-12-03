@@ -18,7 +18,7 @@ class WarrantyReport extends Model
         'BodyType',
         'VIN_ID',
         'Odometer',
-        'Hours',
+        'FirstTimeMaintenance',
         'PlateNumber',
         'Color',
         'ApprovedBy',

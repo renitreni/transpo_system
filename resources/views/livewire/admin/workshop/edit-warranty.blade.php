@@ -102,8 +102,8 @@
                     </div>
 
                     <div class="{{ $inputContainerStyle }} ">
-                        <label>Hours</label>
-                        <input wire:model='hours' required class="{{ $inputStyle }}" type="number">
+                        <label>First Time Maintenance</label>
+                        <input wire:model='firstTimeMaintenance' required class="{{ $inputStyle }}" type="date">
                     </div>
                 </div>
 
