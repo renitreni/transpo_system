@@ -66,31 +66,54 @@
                         <label>Body Type</label>
                         <select wire:model='bodyType' class="{{ $selectStyle }} {{ $inputStyle }}">
                             <option selected value="">Select</option>
-                            <option @if ($bodyType == 'General Cargo') selected @endif value="General Cargo">General Cargo</option>
-                            <option @if ($bodyType == 'Dry van / Box truck') selected @endif value="Dry van / Box truck">Dry van / Box truck</option>
-                            <option @if ($bodyType == 'Curtainsider') selected @endif value="Curtainsider">Curtainsider</option>
+                            <option @if ($bodyType == 'General Cargo') selected @endif value="General Cargo">General
+                                Cargo</option>
+                            <option @if ($bodyType == 'Dry van / Box truck') selected @endif value="Dry van / Box truck">Dry
+                                van / Box truck</option>
+                            <option @if ($bodyType == 'Curtainsider') selected @endif value="Curtainsider">Curtainsider
+                            </option>
                             <option @if ($bodyType == 'Dropside') selected @endif value="Dropside">Dropside</option>
                             <option @if ($bodyType == 'Wing van') selected @endif value="Wing van">Wing van</option>
                             <option @if ($bodyType == 'Flatbed') selected @endif value="Flatbed">Flatbed</option>
-                            <option @if ($bodyType == 'Temperature Controlled') selected @endif value="Temperature Controlled">Temperature Controlled</option>
-                            <option @if ($bodyType == 'Reefer truck (Freezer)') selected @endif value="Reefer truck (Freezer)">Reefer truck (Freezer)</option>
-                            <option @if ($bodyType == 'Chiller truck') selected @endif value="Chiller truck">Chiller truck</option>
-                            <option @if ($bodyType == 'Insulated van') selected @endif value="Insulated van">Insulated van</option>
-                            <option @if ($bodyType == 'Construction / Heavy') selected @endif value="Construction / Heavy">Construction / Heavy</option>
-                            <option @if ($bodyType == 'Tipper / Dump truck') selected @endif value="Tipper / Dump truck">Tipper / Dump truck</option>
-                            <option @if ($bodyType == 'Mixer truck') selected @endif value="Mixer truck">Mixer truck</option>
-                            <option @if ($bodyType == 'Lowbed trailer') selected @endif value="Lowbed trailer">Lowbed trailer</option>
-                            <option @if ($bodyType == 'Flatbed with crane') selected @endif value="Flatbed with crane">Flatbed with crane</option>
-                            <option @if ($bodyType == 'Hook lift / Roll-off container truck') selected @endif value="Hook lift / Roll-off container truck">Hook lift / Roll-off container truck</option>
-                            <option @if ($bodyType == 'Tanker (fuel, water, chemicals)') selected @endif value="Tanker (fuel, water, chemicals)">Tanker (fuel, water, chemicals)</option>
-                            <option @if ($bodyType == 'Car carrier') selected @endif value="Car carrier">Car carrier</option>
-                            <option @if ($bodyType == 'Livestock truck') selected @endif value="Livestock truck">Livestock truck</option>
-                            <option @if ($bodyType == 'Garbage compactor') selected @endif value="Garbage compactor">Garbage compactor</option>
-                            <option @if ($bodyType == 'Vacuum truck') selected @endif value="Vacuum truck">Vacuum truck</option>
-                            <option @if ($bodyType == 'Bulk carrier (cement, grain)') selected @endif value="Bulk carrier (cement, grain)">Bulk carrier (cement, grain)</option>
-                            <option @if ($bodyType == 'Log carrier') selected @endif value="Log carrier">Log carrier</option>
-                            <option @if ($bodyType == 'Ambulance truck body') selected @endif value="Ambulance truck body">Ambulance truck body</option>
-                            <option @if ($bodyType == 'Fire truck body') selected @endif value="Fire truck body">Fire truck body</option>
+                            <option @if ($bodyType == 'Temperature Controlled') selected @endif value="Temperature Controlled">
+                                Temperature Controlled</option>
+                            <option @if ($bodyType == 'Reefer truck (Freezer)') selected @endif value="Reefer truck (Freezer)">
+                                Reefer truck (Freezer)</option>
+                            <option @if ($bodyType == 'Chiller truck') selected @endif value="Chiller truck">Chiller
+                                truck</option>
+                            <option @if ($bodyType == 'Insulated van') selected @endif value="Insulated van">Insulated
+                                van</option>
+                            <option @if ($bodyType == 'Construction / Heavy') selected @endif value="Construction / Heavy">
+                                Construction / Heavy</option>
+                            <option @if ($bodyType == 'Tipper / Dump truck') selected @endif value="Tipper / Dump truck">
+                                Tipper / Dump truck</option>
+                            <option @if ($bodyType == 'Mixer truck') selected @endif value="Mixer truck">Mixer truck
+                            </option>
+                            <option @if ($bodyType == 'Lowbed trailer') selected @endif value="Lowbed trailer">Lowbed
+                                trailer</option>
+                            <option @if ($bodyType == 'Flatbed with crane') selected @endif value="Flatbed with crane">
+                                Flatbed with crane</option>
+                            <option @if ($bodyType == 'Hook lift / Roll-off container truck') selected @endif
+                                value="Hook lift / Roll-off container truck">Hook lift / Roll-off container truck
+                            </option>
+                            <option @if ($bodyType == 'Tanker (fuel, water, chemicals)') selected @endif
+                                value="Tanker (fuel, water, chemicals)">Tanker (fuel, water, chemicals)</option>
+                            <option @if ($bodyType == 'Car carrier') selected @endif value="Car carrier">Car carrier
+                            </option>
+                            <option @if ($bodyType == 'Livestock truck') selected @endif value="Livestock truck">
+                                Livestock truck</option>
+                            <option @if ($bodyType == 'Garbage compactor') selected @endif value="Garbage compactor">
+                                Garbage compactor</option>
+                            <option @if ($bodyType == 'Vacuum truck') selected @endif value="Vacuum truck">Vacuum
+                                truck</option>
+                            <option @if ($bodyType == 'Bulk carrier (cement, grain)') selected @endif
+                                value="Bulk carrier (cement, grain)">Bulk carrier (cement, grain)</option>
+                            <option @if ($bodyType == 'Log carrier') selected @endif value="Log carrier">Log carrier
+                            </option>
+                            <option @if ($bodyType == 'Ambulance truck body') selected @endif value="Ambulance truck body">
+                                Ambulance truck body</option>
+                            <option @if ($bodyType == 'Fire truck body') selected @endif value="Fire truck body">Fire
+                                truck body</option>
                         </select>
                     </div>
                 </div>
@@ -102,8 +125,9 @@
                     </div>
 
                     <div class="{{ $inputContainerStyle }} ">
-                        <label>First Time Maintenance</label>
-                        <input wire:model='firstTimeMaintenance' required class="{{ $inputStyle }}" type="date">
+                        <label>First Odometer</label>
+                        <input wire:model='firstTimeMaintenance' required class="{{ $inputStyle }}" type="number"
+                            step="0.01" placeholder="0.00">
                     </div>
                 </div>
 
@@ -120,11 +144,8 @@
 
                     <div class="{{ $inputContainerStyle }} ">
                         <label>Kilometers</label>
-                        <input wire:model.live='odometer'
-                               required
-                               class="{{ $inputStyle }}"
-                               type="number">
-                        @if($this->nextKilometer)
+                        <input wire:model.live='odometer' required class="{{ $inputStyle }}" type="number">
+                        @if ($this->nextKilometer)
                             <small class="text-xs text-gray-500 mt-1">
                                 Next Kilometer for Change Oil: {{ number_format($this->nextKilometer) }}
                             </small>
@@ -163,8 +184,8 @@
                     <div
                         class="flex items-center justify-between p-2.5 border border-black/10 bg-white rounded-md shadow">
                         <span>{{ $status ? 'Working' : 'Need Repair' }}</span>
-                        <input @if ($status) checked @endif wire:model.live='status' type="checkbox"
-                            class="border-black/30 switch switch-ghost-primary" />
+                        <input @if ($status) checked @endif wire:model.live='status'
+                            type="checkbox" class="border-black/30 switch switch-ghost-primary" />
                     </div>
                 </div>
             </div>

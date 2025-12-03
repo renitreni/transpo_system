@@ -80,7 +80,8 @@
                             <option value="Mixer truck">Mixer truck</option>
                             <option value="Lowbed trailer">Lowbed trailer</option>
                             <option value="Flatbed with crane">Flatbed with crane</option>
-                            <option value="Hook lift / Roll-off container truck">Hook lift / Roll-off container truck</option>
+                            <option value="Hook lift / Roll-off container truck">Hook lift / Roll-off container truck
+                            </option>
                             <option value="Tanker (fuel, water, chemicals)">Tanker (fuel, water, chemicals)</option>
                             <option value="Car carrier">Car carrier</option>
                             <option value="Livestock truck">Livestock truck</option>
@@ -101,8 +102,9 @@
                     </div>
 
                     <div class="{{ $inputContainerStyle }} ">
-                        <label>First Time Maintenance</label>
-                        <input wire:model='form.FirstTimeMaintenance' required class="{{ $inputStyle }}" type="date">
+                        <label>First Odometer</label>
+                        <input wire:model='form.FirstTimeMaintenance' required class="{{ $inputStyle }}"
+                            type="number" step="0.01" placeholder="0.00">
                     </div>
                 </div>
 
@@ -119,11 +121,8 @@
 
                     <div class="{{ $inputContainerStyle }} ">
                         <label>Kilometers</label>
-                        <input wire:model.live='form.Odometer'
-                               required
-                               class="{{ $inputStyle }}"
-                               type="number">
-                        @if($this->nextKilometer)
+                        <input wire:model.live='form.Odometer' required class="{{ $inputStyle }}" type="number">
+                        @if ($this->nextKilometer)
                             <small class="text-xs text-gray-500 mt-1">
                                 Next Kilometer for Change Oil: {{ number_format($this->nextKilometer) }}
                             </small>
@@ -176,8 +175,8 @@
                 <div class="flex flex-col flex-1">
                     <label>Upload Images</label>
                     <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true"
-                        x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false"
-                        x-on:livewire-upload-error="uploading = false"
+                        x-on:livewire-upload-finish="uploading = false"
+                        x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false"
                         x-on:livewire-upload-progress="progress = $event.detail.progress">
                         <input wire:model='form.Images' accept="image/*,video/*" type="file" multiple
                             class="input-file" />

@@ -24,7 +24,7 @@ class WarrantyReportForm extends Form
 
     public string $Odometer = '';
 
-    public string $FirstTimeMaintenance = '';
+    public float $FirstTimeMaintenance = 0.0;
 
     public string $PlateNumber = '';
 
