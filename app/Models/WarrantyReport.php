@@ -15,6 +15,7 @@ class WarrantyReport extends Model
         'Location',
         'Brand',
         'Model',
+        'BodyType',
         'VIN_ID',
         'Odometer',
         'Hours',

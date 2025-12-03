@@ -18,6 +18,8 @@ class WarrantyReportForm extends Form
 
     public string $Model = '';
 
+    public string $BodyType = '';
+
     public string $VIN_ID = '';
 
     public string $Odometer = '';

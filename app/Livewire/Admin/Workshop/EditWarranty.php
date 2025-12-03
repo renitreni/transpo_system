@@ -51,6 +51,7 @@ class EditWarranty extends Component
     public $location = '';
     public $brand = '';
     public $model = '';
+    public $bodyType = '';
     public $vinId = '';
     public $odometer = '';
     public $hours = '';
@@ -137,6 +138,7 @@ class EditWarranty extends Component
         $this->location = $report->Location;
         $this->brand = $report->Brand;
         $this->model = $report->Model;
+        $this->bodyType = $report->BodyType ?? '';
         $this->vinId = $report->VIN_ID;
         $this->odometer = $report->Odometer;
         $this->hours = $report->Hours;
@@ -195,6 +197,7 @@ class EditWarranty extends Component
         $report->Location = strtoupper($this->location);
         $report->Brand = strtoupper($this->brand);
         $report->Model = strtoupper($this->model);
+        $report->BodyType = $this->bodyType;
         $report->VIN_ID = strtoupper($this->vinId);
         $report->Odometer = strtoupper($this->odometer);
         $report->Hours = strtoupper($this->hours);
@@ -222,7 +225,7 @@ class EditWarranty extends Component
 
             $this->fileUploadService->uploadDocument($this->file, $this->warrantyId);
         }
-        
+
         // Upload images if provided
         if (!empty($this->images)) {
             $this->validate([
@@ -278,7 +281,7 @@ class EditWarranty extends Component
         }
 
         $value = (int) $this->odometer;
-        
+
         if ($value <= 0) {
             return null;
         }
