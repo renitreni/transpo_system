@@ -38,7 +38,6 @@ class ManageInventories extends Component
 
     protected $rules = [
         'product_name' => 'required|string|max:255',
-        'serial_number' => 'required|string|max:255|unique:inventories,serial_number',
         'quantity' => 'required|integer|min:0',
         'location' => 'required|string|max:255',
         'expiration_date' => 'nullable|date|after:today',
@@ -109,11 +108,6 @@ class ManageInventories extends Component
     public function save()
     {
         $this->validate();
-
-        $rules = $this->rules;
-        if ($this->editingId) {
-            $rules['serial_number'] = 'required|string|max:255|unique:inventories,serial_number,' . $this->editingId;
-        }
 
         $data = [
             'product_name' => $this->product_name,
