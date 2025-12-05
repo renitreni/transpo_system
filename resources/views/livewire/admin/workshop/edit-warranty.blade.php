@@ -64,13 +64,7 @@
                     </div>
                     <div class="{{ $inputContainerStyle }}">
                         <label>Body Type</label>
-                        <select wire:model='bodyType' class="{{ $selectStyle }} {{ $inputStyle }}">
-                            <option selected value="">Select</option>
-                            @foreach (\App\Enums\TruckBodyTypeEnum::cases() as $case)
-                                <option @if ($bodyType == $case->value) selected @endif value="{{ $case->value }}">
-                                    {{ $case->value }}</option>
-                            @endforeach
-                        </select>
+                        <input wire:model='bodyType' class="{{ $inputStyle }}" type="text">
                     </div>
                 </div>
 
