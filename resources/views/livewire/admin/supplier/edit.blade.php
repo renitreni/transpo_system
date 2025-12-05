@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between gap-2 mb-3">
         <div class="inline-flex items-center gap-2">
             <button type="button"
-                onclick="window.location.href='{{ route('admin_EditWarranty', ['lang' => 'en', 'warranty_id' => $report_id]) }}'"
+                onclick="window.location.href='{{ route('admin_EditWarranty', ['lang' => 'en', 'warrantyId' => $report_id]) }}'"
                 class="gap-2 text-white bg-blue-400 hover:bg-blue-600 btn btn-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">

@@ -61,7 +61,7 @@ class EditWarranty extends Component
     public $dateApproved = '';
     public $destination = '';
     public $report = '';
-
+    public $edit;
     /**
      * @var bool
      */

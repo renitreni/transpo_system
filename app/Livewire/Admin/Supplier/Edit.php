@@ -101,11 +101,16 @@ class Edit extends Component
 
     public string $dir = 'ltr';
 
-    public string $lang = 'en';
+    public $lang = 'en';
 
-    public function mount(string $lang, int $id)
+    public $warrantyId;
+
+    public $id;
+
+    public function mount()
     {
-        $data = SupplierWarranty::where('Report_id', $id)->with('report')->first();
+        $this->warrantyId = $this->id;
+        $data = SupplierWarranty::where('Report_id', $this->warrantyId)->with('report')->first();
         $this->supplier_id = $data->id;
         $this->report_id = $data->report->id;
         $replacement = Replacement::where('supplier_id', $data->id)->get();
@@ -119,7 +124,7 @@ class Edit extends Component
             ];
         }
 
-        $this->allFiles = WarrantyFiles::where('Report_id', $id)->get();
+        $this->allFiles = WarrantyFiles::where('Report_id', $this->warrantyId)->get();
         $this->ProductName = $data->report->Brand.' '.$data->report->Model;
         $this->OrderNumber = $data->OrderNumber;
         $this->MachineNumber = $data->report->VIN_ID;
@@ -153,8 +158,7 @@ class Edit extends Component
         $this->DateWarrantySupplierRequest = date('F/d/Y', strtotime($data->DateWarrantySupplierRequest));
         $this->approvalSig = $data->ApprovalSignature;
         $this->SignatureDate = date('F/d/Y', strtotime($data->SignatureDate));
-        App::setLocale($lang);
-        $this->lang = $lang;
+        App::setLocale($this->lang);
     }
 
     public function addRows(): void
